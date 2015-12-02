@@ -28,6 +28,7 @@
 		161B9D971C0ECF8E005FB59B /* libMaxMobSDKV2.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMaxMobSDKV2.0.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxMobSDKV2_0.h; sourceTree = "<group>"; };
 		161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaxMobSDKV2_0.m; sourceTree = "<group>"; };
+		161B9DA51C0ECFDA005FB59B /* mraid.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = mraid.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +45,7 @@
 		161B9D8E1C0ECF8E005FB59B = {
 			isa = PBXGroup;
 			children = (
+				161B9DA51C0ECFDA005FB59B /* mraid.js */,
 				161B9D991C0ECF8E005FB59B /* MaxMobSDKV2.0 */,
 				161B9D981C0ECF8E005FB59B /* Products */,
 			);
