@@ -2,7 +2,7 @@
 Do not modify this version of the file.  It will be copied over when any of the project's targets are built.
 If you wish to modify mraid.js, modify the version located at mopub-sdk-common/mraid/mraid.js.
 */
-(function() {
+(function() {//解决console.log在iOS的uiwebview中使用的问题
   var isIOS = (/iphone|ipad|ipod/i).test(window.navigator.userAgent.toLowerCase());
   if (isIOS) {
     console = {};
@@ -52,10 +52,10 @@ If you wish to modify mraid.js, modify the version located at mopub-sdk-common/m
     window.location = nextCall;
   };
 
-  bridge.executeNativeCall = function(args) {
+  bridge.executeNativeCall = function(args) {//主要与SDK交互的主要方法，执行客户端的消息
     var command = args.shift();
 
-    if (!this.nativeSDKFiredReady) {
+    if (!this.nativeSDKFiredReady) {//如果没有准备好，则拒绝执行命令
         console.log('rejecting ' + command + ' because mraid is not ready');
         bridge.notifyErrorEvent('mraid is not ready', command);
         return;
@@ -273,7 +273,7 @@ If you wish to modify mraid.js, modify the version located at mopub-sdk-common/m
 
   var listeners = {};
 
-  // Internal MRAID state. Modified by the native SDK. /////////////////////////////////////////////
+  // Internal MRAID state: Modified by the native SDK. /////////////////////////////////////////////
 
   var state = STATES.LOADING;
 
