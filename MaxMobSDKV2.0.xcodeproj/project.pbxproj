@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		161B9D9B1C0ECF8E005FB59B /* MaxMobSDKV2_0.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */; };
 		161B9D9D1C0ECF8E005FB59B /* MaxMobSDKV2_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */; };
+		1658CFE31C10316C00C4259F /* MRAIDBundleManeger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658CFE21C10316C00C4259F /* MRAIDBundleManeger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,8 @@
 		161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxMobSDKV2_0.h; sourceTree = "<group>"; };
 		161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaxMobSDKV2_0.m; sourceTree = "<group>"; };
 		161B9DA61C0EDD36005FB59B /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
+		1658CFE11C10316C00C4259F /* MRAIDBundleManeger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRAIDBundleManeger.h; sourceTree = "<group>"; };
+		1658CFE21C10316C00C4259F /* MRAIDBundleManeger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRAIDBundleManeger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,8 @@
 			children = (
 				161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */,
 				161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */,
+				1658CFE11C10316C00C4259F /* MRAIDBundleManeger.h */,
+				1658CFE21C10316C00C4259F /* MRAIDBundleManeger.m */,
 			);
 			path = MaxMobSDKV2.0;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				161B9D9D1C0ECF8E005FB59B /* MaxMobSDKV2_0.m in Sources */,
+				1658CFE31C10316C00C4259F /* MRAIDBundleManeger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +254,7 @@
 				161B9DA21C0ECF8E005FB59B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
