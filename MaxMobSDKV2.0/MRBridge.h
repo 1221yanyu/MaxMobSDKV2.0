@@ -1,0 +1,63 @@
+//
+//  MRBridge.h
+//  MaxMobSDKV2.0
+//
+//  Created by Jacob on 15/12/4.
+//  Copyright © 2015年 Jacob. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MRConstants.h"
+
+
+@class MRProperty;
+@protocol MRBridgeDelegate;
+
+//SDK与js脚本之间的中间对象
+@interface MRBridge : NSObject
+
+@property (nonatomic, assign) BOOL shouldHandleRequests;
+@property (nonatomic, weak) id<MRBridgeDelegate> delegate;
+
+-(instancetype)initWithWebView:(UIWebView *)webView;
+
+-(void)loadHTMLString:(NSString *)HTML baseURL:(NSURL *)baseURL;
+
+-(void)fireReadyEvent;
+-(void)fireChangeEventForProperty:(MRProperty *)property;
+-(void)fireChangeEventsForProperties:(NSArray *)properties;
+-(void)fireErrorEventForAction:(NSString *)action withMessage:(NSString *)message;
+
+-(void)fireSizeChangeEvent:(CGSize)size;
+
+-(void)fireSetScreenSize:(CGSize)size;
+-(void)fireSetPlacementType:(NSString *)plagementSize;
+-(void)fireSetCurrentPositionWithPositionRect:(CGRect)positionRect;
+-(void)fireSetDefaultPositionWithPositionRect:(CGRect)positionRect;
+-(void)fireSetMaxSize:(CGSize)maxSize;
+
+@end
+
+
+@protocol MRBridgeDelegate <NSObject>
+
+-(BOOL)isLoadingAd;
+-(MRAdViewPlacementType)placementType;
+-(BOOL)hasUserInteractedWithWeViewForBridge:(MRBridge *)bridge;
+-(UIViewController *)viewControllerForPresentingModalView;
+
+-(void)nativeCommandWillPresentModalView;
+-(void)nativeCommandDidDismissModalView;
+
+-(void)bridge:(MRBridge *)bridge didFinishLoadingWebView:(UIWebView *)webView;
+-(void)bridge:(MRBridge *)bridge didFailLoadingWebView:(UIWebView *)webView;
+
+-(void)handleNativeCommandCloseWithBridge:(MRBridge *)bridge;
+-(void)bridge:(MRBridge *)bridge performActionForMaxMobSpecificURL:(NSURL *)url;
+-(void)bridge:(MRBridge *)bridge handleDisplayForDestinationURL:(NSURL *)URL;
+-(void)bridge:(MRBridge *)bridge handleNativeCommandUseCustomClose:(BOOL)useCustomClose;
+-(void)bridge:(MRBridge *)bridge handleNativeCommandSetOrientationPropertiesWithForceOrientationMask:(UIInterfaceOrientationMask)forceOrientationMask;
+-(void)bridge:(MRBridge *)bridge handleNativeCommandExpandWithURL:(NSURL *)url useCustomClose:(BOOL)useCuntomClose;
+-(void)bridge:(MRBridge *)bridge handleNativeCommandResizeWithParameters:(NSDictionary *)parameters;
+
+@end

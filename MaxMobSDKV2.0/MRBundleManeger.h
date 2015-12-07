@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MRAIDBundleManeger : NSObject
-+(MRAIDBundleManeger *)sharedManager;
+//定位MRAID.js脚本
+@interface MRBundleManeger : NSObject
++(MRBundleManeger *)sharedManager;
 -(NSString *)mraidPath;
 @end

@@ -6,16 +6,16 @@
 //  Copyright © 2015年 Jacob. All rights reserved.
 //
 
-#import "MRAIDBundleManeger.h"
+#import "MRBundleManeger.h"
 
-@implementation MRAIDBundleManeger
+@implementation MRBundleManeger
 
-static MRAIDBundleManeger *sharedManager = nil;
+static MRBundleManeger *sharedManager = nil;
 
-+(MRAIDBundleManeger *)sharedManager
++(MRBundleManeger *)sharedManager
 {
     if (!sharedManager) {
-        sharedManager = [[MRAIDBundleManeger alloc]init];
+        sharedManager = [[MRBundleManeger alloc]init];
     }
     return sharedManager;
 }
