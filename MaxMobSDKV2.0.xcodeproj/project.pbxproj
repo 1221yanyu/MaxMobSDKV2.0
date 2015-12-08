@@ -16,6 +16,7 @@
 		166765F11C114893002549EB /* MRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765F01C114893002549EB /* MRConstants.m */; };
 		16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE11C156E9E00BA5507 /* MRProperty.m */; };
 		16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */; };
+		16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +51,8 @@
 		16C6DEE11C156E9E00BA5507 /* MRProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRProperty.m; sourceTree = "<group>"; };
 		16C6DEE41C159B5D00BA5507 /* MMAdConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdConfiguration.h; sourceTree = "<group>"; };
 		16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAdConfiguration.m; sourceTree = "<group>"; };
+		16C6DEE71C16D88400BA5507 /* MMAdServerCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdServerCommunicator.h; sourceTree = "<group>"; };
+		16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAdServerCommunicator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 			children = (
 				16C6DEE41C159B5D00BA5507 /* MMAdConfiguration.h */,
 				16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */,
+				16C6DEE71C16D88400BA5507 /* MMAdServerCommunicator.h */,
+				16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */,
 				16C6DEE31C157BE200BA5507 /* MRAID */,
 			);
 			path = MaxMobSDKV2.0;
@@ -172,6 +177,7 @@
 				161B9D9D1C0ECF8E005FB59B /* MaxMobSDKV2_0.m in Sources */,
 				16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */,
 				1658CFE31C10316C00C4259F /* MRBundleManeger.m in Sources */,
+				16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */,
 				16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */,
 				166765F11C114893002549EB /* MRConstants.m in Sources */,
 				166765EE1C114825002549EB /* MRCommand.m in Sources */,
