@@ -7,7 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MMAdConfiguration.h"
 
-@interface MMAdServerCommunicator : NSObject
+@protocol MMAdServerCommunicatorDelegate;
+
+@interface MMAdServerCommunicator : NSObject <NSURLConnectionDataDelegate>
+
+@property (nonatomic, weak) id<MMAdServerCommunicatorDelegate> delegate;
+@property(nonatomic,assign,readonly) BOOL loading;
+
+-(id)initWithDelegate:(id<MMAdServerCommunicatorDelegate>)delegate;
+
+-(void)loadURL:(NSURL *)URL;
+-(void)cancel;
+
+@end
+
+@protocol MMAdServerCommunicatorDelegate <NSObject>
+
+@required
+- (void)communicatorDidReceiveAdConfiguration:(MMAdConfiguration *)configuration;
+- (void)communicatorDidFailWithError:(NSError *)error;
 
 @end

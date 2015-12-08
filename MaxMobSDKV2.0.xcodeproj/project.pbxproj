@@ -86,10 +86,8 @@
 		161B9D991C0ECF8E005FB59B /* MaxMobSDKV2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				16C6DEE41C159B5D00BA5507 /* MMAdConfiguration.h */,
-				16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */,
-				16C6DEE71C16D88400BA5507 /* MMAdServerCommunicator.h */,
-				16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */,
+				16C6DEEB1C16F24100BA5507 /* Public */,
+				16C6DEEA1C16F23100BA5507 /* Common */,
 				16C6DEE31C157BE200BA5507 /* MRAID */,
 			);
 			path = MaxMobSDKV2.0;
@@ -114,6 +112,24 @@
 				16C6DEE11C156E9E00BA5507 /* MRProperty.m */,
 			);
 			name = MRAID;
+			sourceTree = "<group>";
+		};
+		16C6DEEA1C16F23100BA5507 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				16C6DEE41C159B5D00BA5507 /* MMAdConfiguration.h */,
+				16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */,
+				16C6DEE71C16D88400BA5507 /* MMAdServerCommunicator.h */,
+				16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		16C6DEEB1C16F24100BA5507 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Public;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
