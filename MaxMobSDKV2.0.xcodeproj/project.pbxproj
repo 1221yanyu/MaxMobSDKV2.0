@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		161B9D9B1C0ECF8E005FB59B /* MaxMobSDKV2_0.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */; };
 		161B9D9D1C0ECF8E005FB59B /* MaxMobSDKV2_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */; };
+		163FF4BF1C180DD3009846F6 /* MMBannerAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 163FF4BE1C180DD3009846F6 /* MMBannerAdViewController.m */; };
+		163FF4C21C180EAF009846F6 /* MMAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 163FF4C11C180EAF009846F6 /* MMAdView.m */; };
+		163FF4C51C181291009846F6 /* MMBannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 163FF4C41C181291009846F6 /* MMBannerAdManager.m */; };
 		1658CFE31C10316C00C4259F /* MRBundleManeger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658CFE21C10316C00C4259F /* MRBundleManeger.m */; };
 		166765E81C1147D2002549EB /* MRBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765E71C1147D2002549EB /* MRBridge.m */; };
 		166765EB1C114805002549EB /* MRController.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765EA1C114805002549EB /* MRController.m */; };
@@ -37,6 +40,12 @@
 		161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxMobSDKV2_0.h; sourceTree = "<group>"; };
 		161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaxMobSDKV2_0.m; sourceTree = "<group>"; };
 		161B9DA61C0EDD36005FB59B /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
+		163FF4BD1C180DD3009846F6 /* MMBannerAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBannerAdViewController.h; sourceTree = "<group>"; };
+		163FF4BE1C180DD3009846F6 /* MMBannerAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBannerAdViewController.m; sourceTree = "<group>"; };
+		163FF4C01C180EAF009846F6 /* MMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdView.h; sourceTree = "<group>"; };
+		163FF4C11C180EAF009846F6 /* MMAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAdView.m; sourceTree = "<group>"; };
+		163FF4C31C181291009846F6 /* MMBannerAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBannerAdManager.h; sourceTree = "<group>"; };
+		163FF4C41C181291009846F6 /* MMBannerAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBannerAdManager.m; sourceTree = "<group>"; };
 		1658CFE11C10316C00C4259F /* MRBundleManeger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBundleManeger.h; sourceTree = "<group>"; };
 		1658CFE21C10316C00C4259F /* MRBundleManeger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBundleManeger.m; sourceTree = "<group>"; };
 		166765E61C1147D2002549EB /* MRBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBridge.h; sourceTree = "<group>"; };
@@ -121,6 +130,8 @@
 				16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */,
 				16C6DEE71C16D88400BA5507 /* MMAdServerCommunicator.h */,
 				16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */,
+				163FF4C31C181291009846F6 /* MMBannerAdManager.h */,
+				163FF4C41C181291009846F6 /* MMBannerAdManager.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -128,6 +139,10 @@
 		16C6DEEB1C16F24100BA5507 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				163FF4BD1C180DD3009846F6 /* MMBannerAdViewController.h */,
+				163FF4BE1C180DD3009846F6 /* MMBannerAdViewController.m */,
+				163FF4C01C180EAF009846F6 /* MMAdView.h */,
+				163FF4C11C180EAF009846F6 /* MMAdView.m */,
 			);
 			name = Public;
 			sourceTree = "<group>";
@@ -190,7 +205,10 @@
 			files = (
 				166765EB1C114805002549EB /* MRController.m in Sources */,
 				166765E81C1147D2002549EB /* MRBridge.m in Sources */,
+				163FF4C51C181291009846F6 /* MMBannerAdManager.m in Sources */,
 				161B9D9D1C0ECF8E005FB59B /* MaxMobSDKV2_0.m in Sources */,
+				163FF4C21C180EAF009846F6 /* MMAdView.m in Sources */,
+				163FF4BF1C180DD3009846F6 /* MMBannerAdViewController.m in Sources */,
 				16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */,
 				1658CFE31C10316C00C4259F /* MRBundleManeger.m in Sources */,
 				16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */,
