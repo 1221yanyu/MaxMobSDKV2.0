@@ -9,10 +9,30 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>testAd.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>161B9D961C0ECF8E005FB59B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>16430FFE1C196ED80067374C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>164310161C196ED80067374C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>164310211C196ED80067374C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
