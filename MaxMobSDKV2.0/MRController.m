@@ -11,6 +11,7 @@
 #import "MRCommand.h"
 #import "MRProperty.h"
 #import "MMClosableView.h"
+#import "MMAdConfiguration.h"
 
 static const NSTimeInterval kAdPropertyUpdateTimerInterval = 1.0;
 static const NSTimeInterval kMRAIDResizeAnimationTimeInterval = 0.3;
@@ -29,6 +30,15 @@ static NSString *const kMRAIDCommandResize = @"resize";
 
 @property (nonatomic, strong) MMClosableView *mraidAdView;
 
+@property (nonatomic, assign) BOOL isAdLoading;
+
+
+// Use UIInterfaceOrientationMaskALL to specify no forcing.
+@property (nonatomic, assign) UIInterfaceOrientationMask forceOrientationMask;
+
+@property (nonatomic, assign) UIInterfaceOrientation currentInterfaceOrientation;
+
+@property (nonatomic, copy) void (^forceOrientationAfterAnimationBlock)();
 
 @end
 
@@ -80,6 +90,34 @@ static NSString *const kMRAIDCommandResize = @"resize";
     }
     
     return webView;
+}
+
+#pragma mark - Public
+
+-(void)loadAdWithConfiguration:(MMAdConfiguration *)configuration
+{
+    self.isAdLoading = YES;
+    
+    NSString *HTML = [configuration adResponseHTMLString];
+    [self.mraidBridge loadHTMLString:HTML baseURL:nil];
+    
+}
+- (void)enableRequestHandling
+{
+    self.mraidBridge.shouldHandleRequests = YES;
+//    self.mraidBridgeTwoPart.shouldHandleRequests = YES;
+    // If orientation has been forced while requests are disabled (during animation), we need to execute that command through the block forceOrientationAfterAnimationBlock() after the presentation completes.
+    if (self.forceOrientationAfterAnimationBlock) {
+        self.forceOrientationAfterAnimationBlock();
+        self.forceOrientationAfterAnimationBlock = nil;
+    }
+}
+
+- (void)disableRequestHandling
+{
+    self.mraidBridge.shouldHandleRequests = NO;
+//    self.mraidBridgeTwoPart.shouldHandleRequests = NO;
+//    [self.destinationDisplayAgent cancel];
 }
 
 @end
