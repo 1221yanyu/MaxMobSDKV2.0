@@ -13,7 +13,7 @@
 		163FF4C21C180EAF009846F6 /* MMAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 163FF4C11C180EAF009846F6 /* MMAdView.m */; };
 		16430FF71C1931AF0067374C /* MMBannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16430FF61C1931AF0067374C /* MMBannerAdManager.m */; };
 		164310341C1987220067374C /* MMClosableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 164310331C1987220067374C /* MMClosableView.m */; };
-		1658CFE31C10316C00C4259F /* MRBundleManeger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658CFE21C10316C00C4259F /* MRBundleManeger.m */; };
+		1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658CFE21C10316C00C4259F /* MRBundleManager.m */; };
 		166765E81C1147D2002549EB /* MRBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765E71C1147D2002549EB /* MRBridge.m */; };
 		166765EB1C114805002549EB /* MRController.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765EA1C114805002549EB /* MRController.m */; };
 		166765EE1C114825002549EB /* MRCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765ED1C114825002549EB /* MRCommand.m */; };
@@ -75,8 +75,8 @@
 		16430FF81C1931CB0067374C /* MMBannerAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBannerAdManagerDelegate.h; sourceTree = "<group>"; };
 		164310321C1987220067374C /* MMClosableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMClosableView.h; sourceTree = "<group>"; };
 		164310331C1987220067374C /* MMClosableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMClosableView.m; sourceTree = "<group>"; };
-		1658CFE11C10316C00C4259F /* MRBundleManeger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBundleManeger.h; sourceTree = "<group>"; };
-		1658CFE21C10316C00C4259F /* MRBundleManeger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBundleManeger.m; sourceTree = "<group>"; };
+		1658CFE11C10316C00C4259F /* MRBundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBundleManager.h; sourceTree = "<group>"; };
+		1658CFE21C10316C00C4259F /* MRBundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBundleManager.m; sourceTree = "<group>"; };
 		166765E61C1147D2002549EB /* MRBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBridge.h; sourceTree = "<group>"; };
 		166765E71C1147D2002549EB /* MRBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBridge.m; sourceTree = "<group>"; };
 		166765E91C114805002549EB /* MRController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRController.h; sourceTree = "<group>"; };
@@ -190,8 +190,8 @@
 			children = (
 				161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */,
 				161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */,
-				1658CFE11C10316C00C4259F /* MRBundleManeger.h */,
-				1658CFE21C10316C00C4259F /* MRBundleManeger.m */,
+				1658CFE11C10316C00C4259F /* MRBundleManager.h */,
+				1658CFE21C10316C00C4259F /* MRBundleManager.m */,
 				166765E61C1147D2002549EB /* MRBridge.h */,
 				166765E71C1147D2002549EB /* MRBridge.m */,
 				166765E91C114805002549EB /* MRController.h */,
@@ -430,7 +430,7 @@
 				163FF4C21C180EAF009846F6 /* MMAdView.m in Sources */,
 				163FF4BF1C180DD3009846F6 /* MMBannerAdViewController.m in Sources */,
 				16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */,
-				1658CFE31C10316C00C4259F /* MRBundleManeger.m in Sources */,
+				1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */,
 				16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */,
 				16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */,
 				166765F11C114893002549EB /* MRConstants.m in Sources */,
