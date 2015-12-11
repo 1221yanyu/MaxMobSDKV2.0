@@ -49,7 +49,7 @@ static NSString * const kMraidURLScheme = @"mraid";
             // Once done loading from the file, execute the javascript and load the html into the web view.
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self executeJavascript:mraidString];
-                [self.webView disableJavaScriptDialogs];
+//                [self.webView disableJavaScriptDialogs];
                 [self.webView loadHTMLString:HTML baseURL:baseURL];
             });
         });
@@ -65,14 +65,14 @@ static NSString * const kMraidURLScheme = @"mraid";
 {
     NSString *JSON = [NSString stringWithFormat:@"{%@}", property];
     [self executeJavascript:@"window.mraidbridge.fireChangeEvent(%@);", JSON];
-    MPLogTrace(@"JSON: %@", JSON);
+//    MPLogTrace(@"JSON: %@", JSON);
 }
 
 -(void)fireChangeEventsForProperties:(NSArray *)properties
 {
     NSString *JSON = [NSString stringWithFormat:@"{%@}", [properties componentsJoinedByString:@", "]];
     [self executeJavascript:@"window.mraidbridge.fireChangeEvent(%@);", JSON];
-    MPLogTrace(@"JSON: %@", JSON);
+//    MPLogTrace(@"JSON: %@", JSON);
 }
 
 -(void)fireErrorEventForAction:(NSString *)action withMessage:(NSString *)message
@@ -126,7 +126,8 @@ static NSString * const kMraidURLScheme = @"mraid";
 //        NSDictionary *properties =
         
     }
-    
+    //////***********
+    return nil;
     
 }
 
