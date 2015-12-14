@@ -98,7 +98,8 @@ static NSString *const kMRAIDCommandResize = @"resize";
 {
     self.isAdLoading = YES;
     
-    NSString *HTML = [configuration adResponseHTMLString];
+//    NSString *HTML = [configuration adResponseHTMLString];
+    NSString *HTML = @"<!DOCTYPE html> <html> <head> <style> body { margin:0; padding:0; overflow:hidden; background:transparent; } </style> <!-- Adgroup is a9b64338add311e281c11231392559e4 --> <script type=\"text/javascript\"> if (trackImpressionHelper == null || typeof(trackImpressionHelper) != \"function\") { function trackImpressionHelper() { var urls = new Array(); var i = 0;  var hiddenSpan = document.createElement('span'); hiddenSpan.style.display = 'none'; var i = 0; for (var i=0;i<urls.length;i++) { var img = document.createElement('img'); img.src = urls[i]; hiddenSpan.appendChild(img); } var body = document.getElementsByTagName('body')[0]; body.appendChild(hiddenSpan); } } </script>  <script type=\"text/javascript\">  if (typeof trackImpressionHelper == 'function') { trackImpressionHelper(); }  function webviewDidAppear() {  }  </script> </head> <body> <style>\r\n#banner {\r\n    position:absolute;\r\n    left:0px;\r\n    top:0px;\r\n    display:block;\r\n    background:#069;\r\n    height:50px;\r\n    width:320px;\r\n    padding:0px;\r\n}\r\n#expa";
     [self.mraidBridge loadHTMLString:HTML baseURL:nil];
     
 }
