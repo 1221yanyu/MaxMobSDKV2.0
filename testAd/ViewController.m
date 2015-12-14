@@ -19,11 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:<#(CGRect)#>];
+    CGRect adFrame = CGRectMake(0, 0, 320, 50);
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:adFrame];
+    MMAdConfiguration *configuration;
+    MRController *mraidController = [[MRController alloc] initWithAdViewFrame:adFrame adPlacementType:MRAdViewPlacementTypeInline];
+    [mraidController loadAdWithConfiguration:configuration];
     
-    MRController *controller = [[MRController alloc] initWithAdViewFrame:<#(CGRect)#> adPlacementType:<#(MRAdViewPlacementType)#>];
     
-    MRBridge *bridge = [[MRBridge alloc] initWithWebView:webView];
+//    MRBridge *bridge = [[MRBridge alloc] initWithWebView:webView];
     
     
     // Do any additional setup after loading the view, typically from a nib.

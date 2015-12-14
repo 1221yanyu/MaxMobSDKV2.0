@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MRController.h"
 
-@interface ViewController : UIViewController
+
+@interface ViewController : UIViewController < MRControllerDelegate>
+{
+    MRController *mrController;
+}
 
 
 @end
