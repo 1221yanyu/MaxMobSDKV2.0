@@ -114,8 +114,7 @@ static NSString * const kMraidURLScheme = @"mraid";
 
 #pragma mark - <UIWebViewDelegate>
 
--(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSURL *url = [request URL];
     NSMutableString *urlString = [NSMutableString stringWithString:[url absoluteString]];
     NSString *scheme = url.scheme;
@@ -130,6 +129,27 @@ static NSString * const kMraidURLScheme = @"mraid";
     return nil;
     
 }
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    NSLog(@"start");
+//    [webView disableJavaScriptDialogs];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self.delegate bridge:self didFinishLoadingWebView:webView];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    if (error.code == NSURLErrorCancelled) {
+        return;
+    }
+    
+//    [self.delegate bridge:self didFailLoadingWebView:webView error:error];
+}
+
 
 
 #pragma mark - Private

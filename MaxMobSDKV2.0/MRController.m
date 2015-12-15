@@ -121,4 +121,18 @@ static NSString *const kMRAIDCommandResize = @"resize";
 //    [self.destinationDisplayAgent cancel];
 }
 
+
+#pragma mark - <MRBridgeDelegate>
+
+-(BOOL)isLoadingAd
+{
+    return self.isAdLoading;
+}
+
+-(BOOL)hasUserInteractedWithWeViewForBridge:(MRBridge *)bridge
+{
+    return nil;
+}
+
+
 @end

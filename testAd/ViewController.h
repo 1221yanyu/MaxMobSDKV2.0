@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MRController.h"
+#import "MRBridge.h"
 
-
-@interface ViewController : UIViewController < MRControllerDelegate>
+@interface ViewController : UIViewController < MRControllerDelegate,MRBridgeDelegate>
 {
     MRController *mrController;
 }

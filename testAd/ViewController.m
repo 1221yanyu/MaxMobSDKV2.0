@@ -23,6 +23,7 @@
     UIWebView *webView = [[UIWebView alloc] initWithFrame:adFrame];
     MMAdConfiguration *configuration;
     MRController *mraidController = [[MRController alloc] initWithAdViewFrame:adFrame adPlacementType:MRAdViewPlacementTypeInline];
+    mraidController.delegate = self;
     [mraidController loadAdWithConfiguration:configuration];
     
     
@@ -31,6 +32,7 @@
     
     // Do any additional setup after loading the view, typically from a nib.
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
