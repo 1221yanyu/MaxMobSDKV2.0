@@ -18,6 +18,7 @@
 		166765EB1C114805002549EB /* MRController.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765EA1C114805002549EB /* MRController.m */; };
 		166765EE1C114825002549EB /* MRCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765ED1C114825002549EB /* MRCommand.m */; };
 		166765F11C114893002549EB /* MRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765F01C114893002549EB /* MRConstants.m */; };
+		1668A52F1C216A40005C7AA8 /* UIWebView+MMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1668A52E1C216A40005C7AA8 /* UIWebView+MMAdditions.m */; };
 		16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE11C156E9E00BA5507 /* MRProperty.m */; };
 		16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */; };
 		16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */; };
@@ -87,6 +88,8 @@
 		166765ED1C114825002549EB /* MRCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCommand.m; sourceTree = "<group>"; };
 		166765EF1C114893002549EB /* MRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRConstants.h; sourceTree = "<group>"; };
 		166765F01C114893002549EB /* MRConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRConstants.m; sourceTree = "<group>"; };
+		1668A52D1C216A40005C7AA8 /* UIWebView+MMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+MMAdditions.h"; sourceTree = "<group>"; };
+		1668A52E1C216A40005C7AA8 /* UIWebView+MMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+MMAdditions.m"; sourceTree = "<group>"; };
 		16C6DEE01C156E9E00BA5507 /* MRProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProperty.h; sourceTree = "<group>"; };
 		16C6DEE11C156E9E00BA5507 /* MRProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRProperty.m; sourceTree = "<group>"; };
 		16C6DEE41C159B5D00BA5507 /* MMAdConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdConfiguration.h; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 		16C6DEE31C157BE200BA5507 /* MRAID */ = {
 			isa = PBXGroup;
 			children = (
+				1668A52D1C216A40005C7AA8 /* UIWebView+MMAdditions.h */,
+				1668A52E1C216A40005C7AA8 /* UIWebView+MMAdditions.m */,
 				161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */,
 				161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */,
 				1658CFE11C10316C00C4259F /* MRBundleManager.h */,
@@ -435,6 +440,7 @@
 				163FF4BF1C180DD3009846F6 /* MMBannerAdViewController.m in Sources */,
 				16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */,
 				1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */,
+				1668A52F1C216A40005C7AA8 /* UIWebView+MMAdditions.m in Sources */,
 				16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */,
 				16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */,
 				166765F11C114893002549EB /* MRConstants.m in Sources */,

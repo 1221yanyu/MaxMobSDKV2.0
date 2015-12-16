@@ -12,6 +12,7 @@
 #import "MRProperty.h"
 #import "MMClosableView.h"
 #import "MMAdConfiguration.h"
+#import "UIWebView+MMAdditions.h"
 
 static const NSTimeInterval kAdPropertyUpdateTimerInterval = 1.0;
 static const NSTimeInterval kMRAIDResizeAnimationTimeInterval = 0.3;
@@ -19,7 +20,7 @@ static const NSTimeInterval kMRAIDResizeAnimationTimeInterval = 0.3;
 static NSString *const kMRAIDCommandExpand = @"expand";
 static NSString *const kMRAIDCommandResize = @"resize";
 
-@interface MRController () <MRBridgeDelegate>
+@interface MRController () <MRBridgeDelegate,MMClosableViewDelegate>
 
 @property (nonatomic, strong) MRBridge *mraidBridge;
 @property (nonatomic, assign) MRAdViewPlacementType placementType;
@@ -27,10 +28,15 @@ static NSString *const kMRAIDCommandResize = @"resize";
 @property (nonatomic, assign) CGSize currentAdSize;
 @property (nonatomic, assign) CGRect mraidDefaultAdFrame;
 @property (nonatomic, strong) UIView *resizeBackgroundView;
+@property (nonatomic, assign) NSUInteger modalViewCount;
+
 
 @property (nonatomic, strong) MMClosableView *mraidAdView;
 
 @property (nonatomic, assign) BOOL isAdLoading;
+
+// Points to mraidAdView (one-part expand) or mraidAdViewTwoPart (two-part expand) while expanded.
+@property (nonatomic, strong) MMClosableView *expansionContentView;
 
 
 // Use UIInterfaceOrientationMaskALL to specify no forcing.
@@ -44,7 +50,7 @@ static NSString *const kMRAIDCommandResize = @"resize";
 
 @implementation MRController
 
--(instancetype)initWithAdViewFrame:(CGRect)adViewFrame adPlacementType:(MRAdViewPlacementType)placementType
+-(instancetype)initWithAdViewFrame:(CGRect)adViewFrame adPlacementType:(MRAdViewPlacementType)placementType 
 {
     if (self = [super init]) {
         _placementType = placementType;
@@ -72,25 +78,7 @@ static NSString *const kMRAIDCommandResize = @"resize";
     return self;
 }
 
-- (UIWebView *)buildMRAIDWebViewWithFrame:(CGRect)frame
-{
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
-    webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    webView.backgroundColor = [UIColor clearColor];
-    webView.clipsToBounds = YES;
-    webView.opaque = NO;
-//    [webView mp_setScrollable:NO];   //找到所有子视图UIScrollViews或子类和设置他们的滚动和反弹
-    
-    if ([webView respondsToSelector:@selector(setAllowsInlineMediaPlayback:)]) {
-        [webView setAllowsInlineMediaPlayback:YES];
-    }
-    
-    if ([webView respondsToSelector:@selector(setMediaPlaybackRequiresUserAction:)]) {
-        [webView setMediaPlaybackRequiresUserAction:NO];
-    }
-    
-    return webView;
-}
+
 
 #pragma mark - Public
 
@@ -99,7 +87,12 @@ static NSString *const kMRAIDCommandResize = @"resize";
     self.isAdLoading = YES;
     
 //    NSString *HTML = [configuration adResponseHTMLString];
-    NSString *HTML = @"<!DOCTYPE html> <html> <head> <style> body { margin:0; padding:0; overflow:hidden; background:transparent; } </style> <!-- Adgroup is a9b64338add311e281c11231392559e4 --> <script type=\"text/javascript\"> if (trackImpressionHelper == null || typeof(trackImpressionHelper) != \"function\") { function trackImpressionHelper() { var urls = new Array(); var i = 0;  var hiddenSpan = document.createElement('span'); hiddenSpan.style.display = 'none'; var i = 0; for (var i=0;i<urls.length;i++) { var img = document.createElement('img'); img.src = urls[i]; hiddenSpan.appendChild(img); } var body = document.getElementsByTagName('body')[0]; body.appendChild(hiddenSpan); } } </script>  <script type=\"text/javascript\">  if (typeof trackImpressionHelper == 'function') { trackImpressionHelper(); }  function webviewDidAppear() {  }  </script> </head> <body> <style>\r\n#banner {\r\n    position:absolute;\r\n    left:0px;\r\n    top:0px;\r\n    display:block;\r\n    background:#069;\r\n    height:50px;\r\n    width:320px;\r\n    padding:0px;\r\n}\r\n#expa";
+    
+    NSBundle *parentBundle = [NSBundle mainBundle];
+    NSString *mraidBundlePath = [parentBundle pathForResource:@"MRAID" ofType:@"bundle"];
+    NSBundle *mraidBundle = [NSBundle bundleWithPath:mraidBundlePath];
+    NSString *htmlPath = [mraidBundle pathForResource:@"readAd" ofType:@"html"];
+    NSString *HTML = [[NSString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
     [self.mraidBridge loadHTMLString:HTML baseURL:nil];
     
 }
@@ -121,6 +114,69 @@ static NSString *const kMRAIDCommandResize = @"resize";
 //    [self.destinationDisplayAgent cancel];
 }
 
+#pragma mark - Private
+//- (void)initAdAlertManager:(id<MPAdAlertManagerProtocol>)adAlertManager forAdView:(MPClosableView *)adView
+//{
+//    adAlertManager.adConfiguration = [self.delegate adConfiguration];
+//    adAlertManager.adUnitId = [self.delegate adUnitId];
+//    adAlertManager.targetAdView = adView;
+//    adAlertManager.location = [self.delegate location];
+//    [adAlertManager beginMonitoringAlerts];
+//}
+
+- (MMClosableView *)adViewForBridge:(MRBridge *)bridge
+{
+//    if (bridge == self.mraidBridgeTwoPart) {
+//        return self.mraidAdViewTwoPart;
+//    }
+    
+    return self.mraidAdView;
+}
+
+- (MRBridge *)bridgeForAdView:(MMClosableView *)view
+{
+//    if (view == self.mraidAdViewTwoPart) {
+//        return self.mraidBridgeTwoPart;
+//    }
+    
+    return self.mraidBridge;
+}
+
+- (MMClosableView *)activeView
+{
+    if (self.currentState == MRAdViewStateExpanded) {
+        return self.expansionContentView;
+    }
+    
+    return self.mraidAdView;
+}
+
+- (MRBridge *)bridgeForActiveAdView
+{
+    MRBridge *bridge = [self bridgeForAdView:[self activeView]];
+    return bridge;
+}
+
+- (UIWebView *)buildMRAIDWebViewWithFrame:(CGRect)frame
+{
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
+    webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    webView.backgroundColor = [UIColor clearColor];
+    webView.clipsToBounds = YES;
+    webView.opaque = NO;
+//    [webView mp_setScrollable:NO];   //找到所有子视图UIScrollViews或子类和设置他们的滚动和反弹
+    
+    if ([webView respondsToSelector:@selector(setAllowsInlineMediaPlayback:)]) {
+        [webView setAllowsInlineMediaPlayback:YES];
+    }
+    
+    if ([webView respondsToSelector:@selector(setMediaPlaybackRequiresUserAction:)]) {
+        [webView setMediaPlaybackRequiresUserAction:NO];
+    }
+    
+    return webView;
+}
+
 
 #pragma mark - <MRBridgeDelegate>
 
@@ -128,11 +184,158 @@ static NSString *const kMRAIDCommandResize = @"resize";
 {
     return self.isAdLoading;
 }
-
--(BOOL)hasUserInteractedWithWeViewForBridge:(MRBridge *)bridge
+-(MRAdViewPlacementType)placementType
 {
-    return nil;
+    return MRAdViewPlacementTypeInline;
+}
+-(BOOL)hasUserInteractedWithWebViewForBridge:(MRBridge *)bridge
+{
+    if (self.placementType == MRAdViewPlacementTypeInterstitial || self.currentState == MRAdViewStateExpanded) {
+        return YES;
+    }
+    
+    MMClosableView *adView = [self adViewForBridge:bridge];
+    return adView.wasTapped;
+}
+-(UIViewController *)viewControllerForPresentingModalView
+{
+    UIViewController *delegateVC = [self.delegate viewControllerForPresentingModalView];
+    
+    // Use the expand modal view controller as the presenting modal if it's being presented.
+//    if (self.expandModalViewController.presentingViewController != nil) {
+//        return self.expandModalViewController;
+//    }
+    
+    return delegateVC;
 }
 
+-(void)nativeCommandWillPresentModalView
+{
+    [self adWillPresentModalView];
+}
+-(void)nativeCommandDidDismissModalView
+{
+    [self adDidDismissModalView];
+}
+
+-(void)bridge:(MRBridge *)bridge didFinishLoadingWebView:(UIWebView *)webView
+{
+    if (self.isAdLoading) {
+        
+        self.isAdLoading = NO;
+        
+            // Only tell the delegate that the ad loaded when the view is the default ad view and not a two-part ad view.
+            if (bridge == self.mraidBridge) {
+                // We do not intialize the javascript/fire ready event, or start our timer for a banner load yet.  We wait until
+                // the ad is in the view hierarchy. We are notified by the view when it is potentially added to the hierarchy in
+                // -closableView:didMoveToWindow:.
+                [self adDidLoad];
+            }
+        }
+}
+- (void)bridge:(MRBridge *)bridge didFailLoadingWebView:(UIWebView *)webView error:(NSError *)error
+{
+    self.isAdLoading = NO;
+    
+    if (bridge == self.mraidBridge) {
+        // We need to report that the ad failed to load when the default ad fails to load.
+        [self adDidFailToLoad];
+    }
+}
+
+-(void)handleNativeCommandCloseWithBridge:(MRBridge *)bridge
+{
+//     [self close];
+}
+-(void)bridge:(MRBridge *)bridge performActionForMaxMobSpecificURL:(NSURL *)url
+{
+//    NSLog(@"MRController - loading MoPub URL: %@", url);
+//    MMMoPubHostCommand command = [url mp_mopubHostCommand];
+//    if (command == MPMoPubHostCommandPrecacheComplete && self.adRequiresPrecaching) {
+//        [self adDidLoad];
+//    } else if (command == MPMoPubHostCommandFailLoad) {
+//        [self adDidFailToLoad];
+//    } else {
+//        MPLogWarn(@"MRController - unsupported MoPub URL: %@", [url absoluteString]);
+//    }
+}
+-(void)bridge:(MRBridge *)bridge handleDisplayForDestinationURL:(NSURL *)URL{
+    
+}
+-(void)bridge:(MRBridge *)bridge handleNativeCommandUseCustomClose:(BOOL)useCustomClose{
+    
+}
+-(void)bridge:(MRBridge *)bridge handleNativeCommandSetOrientationPropertiesWithForceOrientationMask:(UIInterfaceOrientationMask)forceOrientationMask{
+    
+}
+-(void)bridge:(MRBridge *)bridge handleNativeCommandExpandWithURL:(NSURL *)url useCustomClose:(BOOL)useCuntomClose{
+    
+}
+-(void)bridge:(MRBridge *)bridge handleNativeCommandResizeWithParameters:(NSDictionary *)parameters{
+    
+}
+
+
+
+
+#pragma mark - Delegation Wrappers
+
+- (void)adDidLoad
+{
+    if ([self.delegate respondsToSelector:@selector(adDidLoad:)]) {
+        [self.delegate adDidLoad:self.mraidAdView];
+    }
+}
+
+- (void)adDidFailToLoad
+{
+    if ([self.delegate respondsToSelector:@selector(adDidFailToLoad:)]) {
+        [self.delegate adDidFailToLoad:self.mraidAdView];
+    }
+}
+
+- (void)adWillClose
+{
+    if ([self.delegate respondsToSelector:@selector(adWillClose:)]) {
+        [self.delegate adWillClose:self.mraidAdView];
+    }
+}
+
+- (void)adDidClose
+{
+    if ([self.delegate respondsToSelector:@selector(adDidClose:)]) {
+        [self.delegate adDidClose:self.mraidAdView];
+    }
+}
+
+- (void)adWillPresentModalView
+{
+    self.modalViewCount++;
+    if (self.modalViewCount == 1) {
+        [self appShouldSuspend];
+    }
+}
+
+- (void)adDidDismissModalView
+{
+    self.modalViewCount--;
+    if (self.modalViewCount == 0) {
+        [self appShouldResume];
+    }
+}
+
+- (void)appShouldSuspend
+{
+    if ([self.delegate respondsToSelector:@selector(appShouldSuspendForAd:)]) {
+        [self.delegate appShouldSuspendForAd:self.mraidAdView];
+    }
+}
+
+- (void)appShouldResume
+{
+    if ([self.delegate respondsToSelector:@selector(appShouldResumeFromAd:)]) {
+        [self.delegate appShouldResumeFromAd:self.mraidAdView];
+    }
+}
 
 @end

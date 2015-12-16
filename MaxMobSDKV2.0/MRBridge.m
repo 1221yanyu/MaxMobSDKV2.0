@@ -8,8 +8,11 @@
 
 #import "MRBridge.h"
 #import "MRBundleManager.h"
+#import "UIWebView+MMAdditions.h"
 
 static NSString * const kMraidURLScheme = @"mraid";
+NSString *const kJavaScriptDisableDialogSnippet = @"window.alert = function() { }; window.prompt = function() { }; window.confirm = function() { };";
+
 
 @interface MRBridge () <UIWebViewDelegate>
 
@@ -51,6 +54,7 @@ static NSString * const kMraidURLScheme = @"mraid";
                 [self executeJavascript:mraidString];
 //                [self.webView disableJavaScriptDialogs];
                 [self.webView loadHTMLString:HTML baseURL:baseURL];
+
             });
         });
     }
@@ -112,43 +116,58 @@ static NSString * const kMraidURLScheme = @"mraid";
     [self executeJavascript:@"window.mraidbridge.setMaxSize(%.1f, %.1f);", maxSize.width, maxSize.height];
 }
 
+
+
 #pragma mark - <UIWebViewDelegate>
 
--(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
     NSURL *url = [request URL];
     NSMutableString *urlString = [NSMutableString stringWithString:[url absoluteString]];
     NSString *scheme = url.scheme;
     
-    if ([scheme isEqualToString:kMraidURLScheme]) {
-        NSLog(@"Trying to process command: %@", urlString);
-        NSString *command = url.host;
-//        NSDictionary *properties =
-        
-    }
-    //////***********
-    return nil;
     
+    if (!self.shouldHandleRequests) {
+        return NO;
+    }
+    
+    BOOL isLoading = [self.delegate isLoadingAd];
+    BOOL userInteractedWithWebView = [self.delegate hasUserInteractedWithWebViewForBridge:self];
+    BOOL safeToAutoloadLink = navigationType == UIWebViewNavigationTypeLinkClicked || userInteractedWithWebView;
+    
+    if (!isLoading && (navigationType == UIWebViewNavigationTypeOther || navigationType == UIWebViewNavigationTypeLinkClicked)) {
+        BOOL iframe = ![request.URL isEqual:request.mainDocumentURL];
+        
+        // If we load a URL from an iFrame that did not originate from a click or
+        // is a deep link, handle normally and return safeToAutoloadLink.
+        if (iframe && !((navigationType == UIWebViewNavigationTypeLinkClicked) && ([scheme isEqualToString:@"https"] || [scheme isEqualToString:@"http"]))) {
+            return safeToAutoloadLink;
+        }
+        
+        // Otherwise, open the URL in a new web view.
+        [self.delegate bridge:self handleDisplayForDestinationURL:url];
+        return NO;
+    }
+    
+    return safeToAutoloadLink;
 }
-
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"start");
-//    [webView disableJavaScriptDialogs];
+    [webView disableJavaScriptDialogs];
 }
-
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self.delegate bridge:self didFinishLoadingWebView:webView];
 }
-
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     if (error.code == NSURLErrorCancelled) {
         return;
     }
     
-//    [self.delegate bridge:self didFailLoadingWebView:webView error:error];
+    [self.delegate bridge:self didFailLoadingWebView:webView error:error];
 }
+    
 
 
 

@@ -20,11 +20,11 @@
     [super viewDidLoad];
     
     CGRect adFrame = CGRectMake(0, 0, 320, 50);
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:adFrame];
+//    UIWebView *webView = [[UIWebView alloc] initWithFrame:adFrame];
     MMAdConfiguration *configuration;
-    MRController *mraidController = [[MRController alloc] initWithAdViewFrame:adFrame adPlacementType:MRAdViewPlacementTypeInline];
-    mraidController.delegate = self;
-    [mraidController loadAdWithConfiguration:configuration];
+    mrController = [[MRController alloc] initWithAdViewFrame:adFrame adPlacementType:MRAdViewPlacementTypeInline];
+    mrController.delegate = self;
+    [mrController loadAdWithConfiguration:configuration];
     
     
 //    MRBridge *bridge = [[MRBridge alloc] initWithWebView:webView];
@@ -32,6 +32,49 @@
     
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+#pragma mark - MRControllerDelegate
+
+-(NSString *)adUnitId{
+    return nil;
+}
+-(MMAdConfiguration *)adConfiguration{
+    return nil;
+}
+-(CLLocation *)location{
+    return nil;
+}
+
+
+-(UIViewController *)viewControllerForPresentingModalView{
+    return nil;
+}
+
+-(void)appShouldSuspendForAd:(UIView *)adView{
+    
+}
+
+-(void)appShouldResumeFromAd:(UIView *)adView{
+    
+}
+
+-(void)adDidLoad:(UIView *)adView{
+    
+}
+
+-(void)adDidFailToLoad:(UIView *)adView{
+    
+}
+
+-(void)adWillClose:(UIView *)adView{
+    
+}
+
+-(void)adDidClose:(UIView *)adView{
+    
+}
+
+
 
 
 - (void)didReceiveMemoryWarning {

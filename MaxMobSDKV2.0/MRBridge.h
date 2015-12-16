@@ -43,14 +43,14 @@
 
 -(BOOL)isLoadingAd;
 -(MRAdViewPlacementType)placementType;
--(BOOL)hasUserInteractedWithWeViewForBridge:(MRBridge *)bridge;
+-(BOOL)hasUserInteractedWithWebViewForBridge:(MRBridge *)bridge;
 -(UIViewController *)viewControllerForPresentingModalView;
 
 -(void)nativeCommandWillPresentModalView;
 -(void)nativeCommandDidDismissModalView;
 
 -(void)bridge:(MRBridge *)bridge didFinishLoadingWebView:(UIWebView *)webView;
--(void)bridge:(MRBridge *)bridge didFailLoadingWebView:(UIWebView *)webView;
+-(void)bridge:(MRBridge *)bridge didFailLoadingWebView:(UIWebView *)webView error:(NSError *)error;;
 
 -(void)handleNativeCommandCloseWithBridge:(MRBridge *)bridge;
 -(void)bridge:(MRBridge *)bridge performActionForMaxMobSpecificURL:(NSURL *)url;

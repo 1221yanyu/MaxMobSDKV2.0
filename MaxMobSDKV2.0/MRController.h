@@ -16,7 +16,7 @@
 
 @interface MRController : NSObject
 
-@property (nonatomic, weak) id<MRControllerDelegate> delegate;
+@property (nonatomic, assign) id<MRControllerDelegate> delegate;
 
 -(instancetype)initWithAdViewFrame:(CGRect)adViewFrame adPlacementType:(MRAdViewPlacementType)placementType;
 
