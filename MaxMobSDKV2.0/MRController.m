@@ -184,13 +184,13 @@ static NSString *const kMRAIDCommandResize = @"resize";
 {
     // Set up some initial properties so mraid can operate.
     NSLog(@"Injecting initial JavaScript state.");
-    NSArray *startingMraidProperties = @[[MRHostSDKVersionProperty defaultProperty],
-                                         [MRPlacementTypeProperty propertyWithType:self.placementType],
-                                         [MRSupportsProperty defaultProperty],
-                                         [MRStateProperty propertyWithState:self.currentState]
-                                         ];
-    
-    [bridge fireChangeEventsForProperties:startingMraidProperties];
+//    NSArray *startingMraidProperties = @[[MRHostSDKVersionProperty defaultProperty],
+//                                         [MRPlacementTypeProperty propertyWithType:self.placementType],
+//                                         [MRSupportsProperty defaultProperty],
+//                                         [MRStateProperty propertyWithState:self.currentState]
+//                                         ];
+//    
+//    [bridge fireChangeEventsForProperties:startingMraidProperties];
     
 //    [self updateMRAIDProperties];
     

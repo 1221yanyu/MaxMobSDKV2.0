@@ -59,7 +59,7 @@
 }
 
 -(void)adDidLoad:(UIView *)adView{
-    
+    [self.view addSubview:adView];
 }
 
 -(void)adDidFailToLoad:(UIView *)adView{
