@@ -178,16 +178,45 @@ static NSString *const kMRAIDCommandResize = @"resize";
 }
 
 
+#pragma mark - Executing Javascript
+
+- (void)initializeLoadedAdForBridge:(MRBridge *)bridge
+{
+    // Set up some initial properties so mraid can operate.
+    NSLog(@"Injecting initial JavaScript state.");
+    NSArray *startingMraidProperties = @[[MRHostSDKVersionProperty defaultProperty],
+                                         [MRPlacementTypeProperty propertyWithType:self.placementType],
+                                         [MRSupportsProperty defaultProperty],
+                                         [MRStateProperty propertyWithState:self.currentState]
+                                         ];
+    
+    [bridge fireChangeEventsForProperties:startingMraidProperties];
+    
+//    [self updateMRAIDProperties];
+    
+    [bridge fireReadyEvent];
+}
+
+- (void)fireChangeEventToBothBridgesForProperty:(MRProperty *)property
+{
+    [self.mraidBridge fireChangeEventForProperty:property];
+//    [self.mraidBridgeTwoPart fireChangeEventForProperty:property];
+}
+
+
+
 #pragma mark - <MRBridgeDelegate>
 
 -(BOOL)isLoadingAd
 {
     return self.isAdLoading;
 }
+
 -(MRAdViewPlacementType)placementType
 {
     return MRAdViewPlacementTypeInline;
 }
+
 -(BOOL)hasUserInteractedWithWebViewForBridge:(MRBridge *)bridge
 {
     if (self.placementType == MRAdViewPlacementTypeInterstitial || self.currentState == MRAdViewStateExpanded) {
@@ -197,6 +226,7 @@ static NSString *const kMRAIDCommandResize = @"resize";
     MMClosableView *adView = [self adViewForBridge:bridge];
     return adView.wasTapped;
 }
+
 -(UIViewController *)viewControllerForPresentingModalView
 {
     UIViewController *delegateVC = [self.delegate viewControllerForPresentingModalView];
@@ -213,6 +243,7 @@ static NSString *const kMRAIDCommandResize = @"resize";
 {
     [self adWillPresentModalView];
 }
+
 -(void)nativeCommandDidDismissModalView
 {
     [self adDidDismissModalView];
@@ -233,6 +264,7 @@ static NSString *const kMRAIDCommandResize = @"resize";
             }
         }
 }
+
 - (void)bridge:(MRBridge *)bridge didFailLoadingWebView:(UIWebView *)webView error:(NSError *)error
 {
     self.isAdLoading = NO;

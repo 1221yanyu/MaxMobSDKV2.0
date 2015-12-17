@@ -13,6 +13,10 @@
 		163FF4C21C180EAF009846F6 /* MMAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 163FF4C11C180EAF009846F6 /* MMAdView.m */; };
 		16430FF71C1931AF0067374C /* MMBannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16430FF61C1931AF0067374C /* MMBannerAdManager.m */; };
 		164310341C1987220067374C /* MMClosableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 164310331C1987220067374C /* MMClosableView.m */; };
+		1653BBA51C22A081001271E9 /* MRNativeCommandHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1653BBA41C22A081001271E9 /* MRNativeCommandHandler.m */; };
+		1653BBA81C22A57B001271E9 /* MPGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 1653BBA71C22A57B001271E9 /* MPGlobal.m */; };
+		1653BBA91C22A9A3001271E9 /* libMaxMobSDKV2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 161B9D971C0ECF8E005FB59B /* libMaxMobSDKV2.0.a */; };
+		165520931C225E0D00ACE63E /* NSURL+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 165520921C225E0D00ACE63E /* NSURL+MPAdditions.m */; };
 		1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658CFE21C10316C00C4259F /* MRBundleManager.m */; };
 		166765E81C1147D2002549EB /* MRBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765E71C1147D2002549EB /* MRBridge.m */; };
 		166765EB1C114805002549EB /* MRController.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765EA1C114805002549EB /* MRController.m */; };
@@ -22,7 +26,6 @@
 		16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE11C156E9E00BA5507 /* MRProperty.m */; };
 		16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */; };
 		16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */; };
-		16CCBCCD1C1EBAD100A95A6F /* libMaxMobSDKV2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 161B9D971C0ECF8E005FB59B /* libMaxMobSDKV2.0.a */; };
 		16CCBCD01C1EDF0C00A95A6F /* MRAID.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 161B9DA61C0EDD36005FB59B /* MRAID.bundle */; };
 		F4EBE3D61C19BB750004D12E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EBE3D51C19BB750004D12E /* main.m */; };
 		F4EBE3D91C19BB750004D12E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EBE3D81C19BB750004D12E /* AppDelegate.m */; };
@@ -78,6 +81,12 @@
 		16430FF81C1931CB0067374C /* MMBannerAdManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBannerAdManagerDelegate.h; sourceTree = "<group>"; };
 		164310321C1987220067374C /* MMClosableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMClosableView.h; sourceTree = "<group>"; };
 		164310331C1987220067374C /* MMClosableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMClosableView.m; sourceTree = "<group>"; };
+		1653BBA31C22A081001271E9 /* MRNativeCommandHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRNativeCommandHandler.h; sourceTree = "<group>"; };
+		1653BBA41C22A081001271E9 /* MRNativeCommandHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRNativeCommandHandler.m; sourceTree = "<group>"; };
+		1653BBA61C22A57B001271E9 /* MPGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGlobal.h; sourceTree = "<group>"; };
+		1653BBA71C22A57B001271E9 /* MPGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGlobal.m; sourceTree = "<group>"; };
+		165520911C225E0D00ACE63E /* NSURL+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+MPAdditions.h"; sourceTree = "<group>"; };
+		165520921C225E0D00ACE63E /* NSURL+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+MPAdditions.m"; sourceTree = "<group>"; };
 		1658CFE11C10316C00C4259F /* MRBundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBundleManager.h; sourceTree = "<group>"; };
 		1658CFE21C10316C00C4259F /* MRBundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBundleManager.m; sourceTree = "<group>"; };
 		166765E61C1147D2002549EB /* MRBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBridge.h; sourceTree = "<group>"; };
@@ -126,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16CCBCCD1C1EBAD100A95A6F /* libMaxMobSDKV2.0.a in Frameworks */,
+				1653BBA91C22A9A3001271E9 /* libMaxMobSDKV2.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +203,8 @@
 		16C6DEE31C157BE200BA5507 /* MRAID */ = {
 			isa = PBXGroup;
 			children = (
+				165520911C225E0D00ACE63E /* NSURL+MPAdditions.h */,
+				165520921C225E0D00ACE63E /* NSURL+MPAdditions.m */,
 				1668A52D1C216A40005C7AA8 /* UIWebView+MMAdditions.h */,
 				1668A52E1C216A40005C7AA8 /* UIWebView+MMAdditions.m */,
 				161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */,
@@ -204,6 +215,8 @@
 				166765E71C1147D2002549EB /* MRBridge.m */,
 				166765E91C114805002549EB /* MRController.h */,
 				166765EA1C114805002549EB /* MRController.m */,
+				1653BBA31C22A081001271E9 /* MRNativeCommandHandler.h */,
+				1653BBA41C22A081001271E9 /* MRNativeCommandHandler.m */,
 				166765EC1C114825002549EB /* MRCommand.h */,
 				166765ED1C114825002549EB /* MRCommand.m */,
 				166765EF1C114893002549EB /* MRConstants.h */,
@@ -217,6 +230,8 @@
 		16C6DEEA1C16F23100BA5507 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1653BBA61C22A57B001271E9 /* MPGlobal.h */,
+				1653BBA71C22A57B001271E9 /* MPGlobal.m */,
 				16C6DEE41C159B5D00BA5507 /* MMAdConfiguration.h */,
 				16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */,
 				164310321C1987220067374C /* MMClosableView.h */,
@@ -432,16 +447,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1653BBA81C22A57B001271E9 /* MPGlobal.m in Sources */,
 				166765EB1C114805002549EB /* MRController.m in Sources */,
 				166765E81C1147D2002549EB /* MRBridge.m in Sources */,
 				16430FF71C1931AF0067374C /* MMBannerAdManager.m in Sources */,
 				161B9D9D1C0ECF8E005FB59B /* MaxMobSDKV2_0.m in Sources */,
 				163FF4C21C180EAF009846F6 /* MMAdView.m in Sources */,
 				163FF4BF1C180DD3009846F6 /* MMBannerAdViewController.m in Sources */,
+				1653BBA51C22A081001271E9 /* MRNativeCommandHandler.m in Sources */,
 				16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */,
 				1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */,
 				1668A52F1C216A40005C7AA8 /* UIWebView+MMAdditions.m in Sources */,
 				16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */,
+				165520931C225E0D00ACE63E /* NSURL+MPAdditions.m in Sources */,
 				16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */,
 				166765F11C114893002549EB /* MRConstants.m in Sources */,
 				164310341C1987220067374C /* MMClosableView.m in Sources */,
@@ -546,7 +564,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -583,7 +601,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -623,6 +641,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = testAd/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.testAd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -634,6 +653,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = testAd/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.testAd;
 				PRODUCT_NAME = "$(TARGET_NAME)";

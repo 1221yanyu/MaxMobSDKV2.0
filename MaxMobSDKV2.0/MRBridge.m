@@ -8,16 +8,51 @@
 
 #import "MRBridge.h"
 #import "MRBundleManager.h"
+#import "MPGlobal.h"
 #import "UIWebView+MMAdditions.h"
+#import "NSURL+MPAdditions.h"
+#import "MRNativeCommandHandler.h"
+
 
 static NSString * const kMraidURLScheme = @"mraid";
+
+
 NSString *const kJavaScriptDisableDialogSnippet = @"window.alert = function() { }; window.prompt = function() { }; window.confirm = function() { };";
 
 
-@interface MRBridge () <UIWebViewDelegate>
+static NSString * const kTelephoneScheme = @"tel";
+static NSString * const kTelephonePromptScheme = @"telprompt";
+
+// Share Constants
+static NSString * const kMoPubShareScheme = @"mopubshare";
+static NSString * const kMoPubShareTweetHost = @"tweet";
+
+// Commands Constants
+static NSString * const kMoPubURLScheme = @"mopub";
+static NSString * const kMoPubCloseHost = @"close";
+static NSString * const kMoPubFinishLoadHost = @"finishLoad";
+static NSString * const kMoPubFailLoadHost = @"failLoad";
+static NSString * const kMoPubPrecacheCompleteHost = @"precacheComplete";
+
+
+NSDictionary *MMDictionaryFromQueryString(NSString *query) {
+    NSMutableDictionary *queryDict = [NSMutableDictionary dictionary];
+    NSArray *queryElements = [query componentsSeparatedByString:@"&"];
+    for (NSString *element in queryElements) {
+        NSArray *keyVal = [element componentsSeparatedByString:@"="];
+        NSString *key = [keyVal objectAtIndex:0];
+        NSString *value = [keyVal lastObject];
+        [queryDict setObject:[value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                      forKey:key];
+    }
+    return queryDict;
+}
+
+
+@interface MRBridge () <UIWebViewDelegate,MRNativeCommandHandlerDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
-//@property (nonatomic, strong)
+@property (nonatomic, strong) MRNativeCommandHandler *nativeCommandHandler;
 
 @end
 
@@ -28,7 +63,7 @@ NSString *const kJavaScriptDisableDialogSnippet = @"window.alert = function() { 
     if (self = [super init]) {
         _webView = webView;
         _webView.delegate = self;
-        
+        _nativeCommandHandler = [[MRNativeCommandHandler alloc] initWithDelegate:self];
     }
     return  self;
 }
@@ -127,13 +162,41 @@ NSString *const kJavaScriptDisableDialogSnippet = @"window.alert = function() { 
     NSString *scheme = url.scheme;
     
     
+    if ([scheme isEqualToString:kMraidURLScheme]) {
+        // Some native commands such as useCustomClose should be allowed to run even if we're not handling requests.
+        // The command handler will make sure we don't execute native commands that aren't allowed to execute while we're not handling requests.
+        NSLog(@"Trying to process command: %@", urlString);
+        NSString *command = url.host;
+        NSDictionary *properties = MMDictionaryFromQueryString(url.query);
+        [self.nativeCommandHandler handleNativeCommand:command withProperties:properties];
+        return NO;
+    } else if ([[url scheme] isEqualToString:kMoPubURLScheme]) {
+        
+        [self.delegate bridge:self performActionForMoPubSpecificURL:url];
+        return NO;
+    } else if ([scheme isEqualToString:@"ios-log"]) {
+        [urlString replaceOccurrencesOfString:@"%20"
+                                   withString:@" "
+                                      options:NSLiteralSearch
+                                        range:NSMakeRange(0, [urlString length])];
+        NSLog(@"Web console: %@", urlString);
+        return NO;
+    }
+    
     if (!self.shouldHandleRequests) {
+        return NO;
+    }
+
+    if ([[[url scheme] lowercaseString] isEqualToString:kTelephoneScheme] || [[[url scheme] lowercaseString] isEqualToString:kTelephonePromptScheme]) {
+        [self.delegate bridge:self handleDisplayForDestinationURL:url];
         return NO;
     }
     
     BOOL isLoading = [self.delegate isLoadingAd];
     BOOL userInteractedWithWebView = [self.delegate hasUserInteractedWithWebViewForBridge:self];
-    BOOL safeToAutoloadLink = navigationType == UIWebViewNavigationTypeLinkClicked || userInteractedWithWebView;
+    BOOL safeToAutoloadLink = navigationType == UIWebViewNavigationTypeLinkClicked || userInteractedWithWebView || [[url scheme].lowercaseString isEqualToString:@"http"] ||
+    [[url scheme].lowercaseString isEqualToString:@"https"] ||
+    [[url scheme].lowercaseString isEqualToString:@"about"];
     
     if (!isLoading && (navigationType == UIWebViewNavigationTypeOther || navigationType == UIWebViewNavigationTypeLinkClicked)) {
         BOOL iframe = ![request.URL isEqual:request.mainDocumentURL];
@@ -196,6 +259,81 @@ NSString *const kJavaScriptDisableDialogSnippet = @"window.alert = function() { 
 {
     NSString *js = [[NSString alloc] initWithFormat:javascript arguments:args];
     [self.webView stringByEvaluatingJavaScriptFromString:js];
+}
+
+
+#pragma mark - MRNativeCommandHandlerDelegate
+
+- (void)handleMRAIDUseCustomClose:(BOOL)useCustomClose
+{
+    [self.delegate bridge:self handleNativeCommandUseCustomClose:useCustomClose];
+}
+
+- (void)handleMRAIDSetOrientationPropertiesWithForceOrientationMask:(UIInterfaceOrientationMask)forceOrientationMask
+{
+    [self.delegate bridge:self handleNativeCommandSetOrientationPropertiesWithForceOrientationMask:forceOrientationMask];
+}
+
+- (void)handleMRAIDOpenCallForURL:(NSURL *)URL
+{
+    [self.delegate bridge:self handleDisplayForDestinationURL:URL];
+}
+
+- (void)handleMRAIDExpandWithParameters:(NSDictionary *)params
+{
+    id urlValue = [params objectForKey:@"url"];
+    [self.delegate bridge:self handleNativeCommandExpandWithURL:(urlValue == [NSNull null]) ? nil : urlValue
+           useCustomClose:[[params objectForKey:@"useCustomClose"] boolValue]];
+}
+
+- (void)handleMRAIDResizeWithParameters:(NSDictionary *)params
+{
+    [self.delegate bridge:self handleNativeCommandResizeWithParameters:params];
+}
+
+- (void)handleMRAIDClose
+{
+    [self.delegate handleNativeCommandCloseWithBridge:self];
+}
+
+- (void)nativeCommandWillPresentModalView
+{
+    [self.delegate nativeCommandWillPresentModalView];
+}
+
+- (void)nativeCommandDidDismissModalView
+{
+    [self.delegate nativeCommandDidDismissModalView];
+}
+
+- (void)nativeCommandCompleted:(NSString *)command
+{
+    [self fireNativeCommandCompleteEvent:command];
+}
+
+- (void)nativeCommandFailed:(NSString *)command withMessage:(NSString *)message
+{
+    [self fireErrorEventForAction:command withMessage:message];
+}
+
+- (UIViewController *)viewControllerForPresentingModalView
+{
+    return [self.delegate viewControllerForPresentingModalView];
+}
+
+- (MRAdViewPlacementType)adViewPlacementType
+{
+    return [self.delegate placementType];
+}
+
+- (BOOL)userInteractedWithWebView
+{
+    return [self.delegate hasUserInteractedWithWebViewForBridge:self];
+}
+
+- (BOOL)handlingWebviewRequests
+{
+    return self.shouldHandleRequests;
 }
 
 @end

@@ -20,10 +20,10 @@
 
 /////////////////////////////////////
 
-@interface MRHostSDKVersionProPerty : MRProperty
+@interface MRHostSDKVersionProperty : MRProperty
 
 @property (nonatomic, copy)NSString *version;
-+(MRHostSDKVersionProPerty *)defaultProperty;
++(MRHostSDKVersionProperty *)defaultProperty;
 
 @end
 
@@ -47,7 +47,7 @@
 
 @property (nonatomic, assign) MRAdViewState state;
 
-+(MRStateProperty *)propertyWityState:(MRAdViewState)state;
++(MRStateProperty *)propertyWithState:(MRAdViewState)state;
 
 @end
 
@@ -65,7 +65,7 @@
 
 /////////////////////////////////////
 
-@interface MrSupportProperty : MRProperty
+@interface MRSupportsProperty : MRProperty
 
 @property (nonatomic, assign) BOOL supportsSms;
 @property (nonatomic, assign) BOOL supportsTel;
@@ -74,8 +74,8 @@
 @property (nonatomic, assign) BOOL supportsInlineVideo;
 
 +(NSDictionary *)supportedFeatures;
-+(MrSupportProperty *)defaultProperty;
-+(MrSupportProperty *)propertyWithSupportedFeaturesDictionary:(NSDictionary *)dictionary;
++(MRSupportsProperty *)defaultProperty;
++(MRSupportsProperty *)propertyWithSupportedFeaturesDictionary:(NSDictionary *)dictionary;
 
 @end
 

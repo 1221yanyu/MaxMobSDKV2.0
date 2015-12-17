@@ -53,7 +53,7 @@
 -(void)bridge:(MRBridge *)bridge didFailLoadingWebView:(UIWebView *)webView error:(NSError *)error;;
 
 -(void)handleNativeCommandCloseWithBridge:(MRBridge *)bridge;
--(void)bridge:(MRBridge *)bridge performActionForMaxMobSpecificURL:(NSURL *)url;
+-(void)bridge:(MRBridge *)bridge performActionForMoPubSpecificURL:(NSURL *)url;
 -(void)bridge:(MRBridge *)bridge handleDisplayForDestinationURL:(NSURL *)URL;
 -(void)bridge:(MRBridge *)bridge handleNativeCommandUseCustomClose:(BOOL)useCustomClose;
 -(void)bridge:(MRBridge *)bridge handleNativeCommandSetOrientationPropertiesWithForceOrientationMask:(UIInterfaceOrientationMask)forceOrientationMask;
