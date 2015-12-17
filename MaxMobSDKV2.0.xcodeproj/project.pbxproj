@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160893411C22DB6E001DEC22 /* MPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 160893401C22DB6E001DEC22 /* MPTimer.m */; };
 		161B9D9B1C0ECF8E005FB59B /* MaxMobSDKV2_0.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */; };
 		161B9D9D1C0ECF8E005FB59B /* MaxMobSDKV2_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */; };
 		163FF4BF1C180DD3009846F6 /* MMBannerAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 163FF4BE1C180DD3009846F6 /* MMBannerAdViewController.m */; };
@@ -68,6 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1608933F1C22DB6E001DEC22 /* MPTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTimer.h; sourceTree = "<group>"; };
+		160893401C22DB6E001DEC22 /* MPTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTimer.m; sourceTree = "<group>"; };
 		161B9D971C0ECF8E005FB59B /* libMaxMobSDKV2.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMaxMobSDKV2.0.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxMobSDKV2_0.h; sourceTree = "<group>"; };
 		161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaxMobSDKV2_0.m; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 		16C6DEEA1C16F23100BA5507 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1608933F1C22DB6E001DEC22 /* MPTimer.h */,
+				160893401C22DB6E001DEC22 /* MPTimer.m */,
 				1653BBA61C22A57B001271E9 /* MPGlobal.h */,
 				1653BBA71C22A57B001271E9 /* MPGlobal.m */,
 				16C6DEE41C159B5D00BA5507 /* MMAdConfiguration.h */,
@@ -463,6 +468,7 @@
 				16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */,
 				166765F11C114893002549EB /* MRConstants.m in Sources */,
 				164310341C1987220067374C /* MMClosableView.m in Sources */,
+				160893411C22DB6E001DEC22 /* MPTimer.m in Sources */,
 				166765EE1C114825002549EB /* MRCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

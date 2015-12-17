@@ -13,6 +13,7 @@
 #import "MMClosableView.h"
 #import "MMAdConfiguration.h"
 #import "UIWebView+MMAdditions.h"
+#import "MPTimer.h"
 
 static const NSTimeInterval kAdPropertyUpdateTimerInterval = 1.0;
 static const NSTimeInterval kMRAIDResizeAnimationTimeInterval = 0.3;
@@ -29,6 +30,8 @@ static NSString *const kMRAIDCommandResize = @"resize";
 @property (nonatomic, assign) CGRect mraidDefaultAdFrame;
 @property (nonatomic, strong) UIView *resizeBackgroundView;
 @property (nonatomic, assign) NSUInteger modalViewCount;
+@property (nonatomic, assign) BOOL firedReadyEventForDefaultAd;
+@property (nonatomic, strong) MPTimer *adPropertyUpdateTimer;
 
 
 @property (nonatomic, strong) MMClosableView *mraidAdView;
@@ -178,6 +181,28 @@ static NSString *const kMRAIDCommandResize = @"resize";
 }
 
 
+#pragma mark - Orientation Notifications
+
+- (void)orientationDidChange:(NSNotification *)notification
+{
+    // We listen for device notification changes because at that point our ad's frame is in
+    // the correct state; however, MRAID updates should only happen when the interface changes, so the update logic is only executed if the interface orientation has changed.
+    
+    //MPInterfaceOrientation is guaranteed to be the new orientation at this point.
+    UIInterfaceOrientation newInterfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (newInterfaceOrientation != self.currentInterfaceOrientation) {
+        // Update all properties and fire a size change event.
+//        [self updateMRAIDProperties];
+        
+        //According to MRAID Specs, a resized ad should close when there's an orientation change
+        //due to unpredictability of the new layout.
+        if (self.currentState == MRAdViewStateResized) {
+//            [self close];
+        }
+        
+        self.currentInterfaceOrientation = newInterfaceOrientation;
+    }
+}
 #pragma mark - Executing Javascript
 
 - (void)initializeLoadedAdForBridge:(MRBridge *)bridge
@@ -308,6 +333,44 @@ static NSString *const kMRAIDCommandResize = @"resize";
 }
 
 
+#pragma mark - <MPClosableViewDelegate>
+
+- (void)closeButtonPressed:(MMClosableView *)view
+{
+//    [self close];
+}
+
+- (void)closableView:(MMClosableView *)closableView didMoveToWindow:(UIWindow *)window
+{
+    // Fire the ready event and initialize properties if the view has a window.
+    MRBridge *bridge = [self bridgeForAdView:closableView];
+    
+    if (!self.firedReadyEventForDefaultAd && bridge == self.mraidBridge) {
+        // The window may be nil if it was removed from a window or added to a view that isn't attached to a window so make sure it actually has a window.
+        if (window != nil) {
+            // Just in case this code is executed twice, ensures that self is only added as
+            // an observer once.
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+            
+            //Keep track of the orientation before we start observing changes.
+            self.currentInterfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+            
+            // Placing orientation notification observing here ensures that the controller only
+            // observes changes after it's been added to the view hierarchy. Subscribing to
+            // orientation changes so we can notify the javascript about the new screen size.
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(orientationDidChange:)
+                                                         name:UIDeviceOrientationDidChangeNotification
+                                                       object:nil];
+            
+            [self.adPropertyUpdateTimer scheduleNow];
+            [self initializeLoadedAdForBridge:bridge];
+            self.firedReadyEventForDefaultAd = YES;
+        }
+    }
+}
+
+
 
 
 #pragma mark - Delegation Wrappers
@@ -369,5 +432,7 @@ static NSString *const kMRAIDCommandResize = @"resize";
         [self.delegate appShouldResumeFromAd:self.mraidAdView];
     }
 }
+
+
 
 @end
