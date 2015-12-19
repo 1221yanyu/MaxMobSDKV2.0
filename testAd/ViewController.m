@@ -19,15 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CGRect adFrame = CGRectMake(0, 0, 320, 50);
-//    UIWebView *webView = [[UIWebView alloc] initWithFrame:adFrame];
+    CGRect adFrame = CGRectMake(0, 50, 320, 50);
     MMAdConfiguration *configuration;
     mrController = [[MRController alloc] initWithAdViewFrame:adFrame adPlacementType:MRAdViewPlacementTypeInline];
     mrController.delegate = self;
     [mrController loadAdWithConfiguration:configuration];
     
-    
-//    MRBridge *bridge = [[MRBridge alloc] initWithWebView:webView];
+
     
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -47,6 +45,7 @@
 
 
 -(UIViewController *)viewControllerForPresentingModalView{
+    
     return nil;
 }
 

@@ -9,7 +9,7 @@
 #import "MRBridge.h"
 #import "MRBundleManager.h"
 #import "MPGlobal.h"
-#import "UIWebView+MMAdditions.h"
+#import "UIWebView+MPAdditions.h"
 #import "NSURL+MPAdditions.h"
 #import "MRNativeCommandHandler.h"
 
@@ -87,7 +87,7 @@ NSDictionary *MMDictionaryFromQueryString(NSString *query) {
             // Once done loading from the file, execute the javascript and load the html into the web view.
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self executeJavascript:mraidString];
-//                [self.webView disableJavaScriptDialogs];
+                [self.webView stringByEvaluatingJavaScriptFromString:kJavaScriptDisableDialogSnippet];
                 [self.webView loadHTMLString:HTML baseURL:baseURL];
 
             });
@@ -216,7 +216,7 @@ NSDictionary *MMDictionaryFromQueryString(NSString *query) {
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [webView disableJavaScriptDialogs];
+    [webView stringByEvaluatingJavaScriptFromString:kJavaScriptDisableDialogSnippet];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {

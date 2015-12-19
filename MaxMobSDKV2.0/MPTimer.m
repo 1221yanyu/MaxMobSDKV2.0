@@ -7,6 +7,11 @@
 //
 
 #import "MPTimer.h"
+#define SUPPRESS_PERFORM_SELECTOR_LEAK_WARNING(code)                        \
+_Pragma("clang diagnostic push")                                        \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"")     \
+code;                                                                   \
+_Pragma("clang diagnostic pop")
 //#import "MPLogging.h"
 //#import "MPInternalUtils.h"
 
@@ -56,12 +61,12 @@
     [self.timer invalidate];
 }
 
-//- (void)timerDidFire
-//{
-//    SUPPRESS_PERFORM_SELECTOR_LEAK_WARNING(
-//        [self.target performSelector:self.selector withObject:nil]
-//    );
-//}
+- (void)timerDidFire
+{
+    SUPPRESS_PERFORM_SELECTOR_LEAK_WARNING(
+        [self.target performSelector:self.selector withObject:nil]
+    );
+}
 
 - (BOOL)isValid
 {

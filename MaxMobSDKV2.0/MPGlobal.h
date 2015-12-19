@@ -100,11 +100,11 @@ typedef NSUInteger MPInterstitialOrientationType;
 // Optional Class Forward Def Protocols
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@class MPAdConfiguration, CLLocation;
+@class MMAdConfiguration, CLLocation;
 
 @protocol MPAdAlertManagerProtocol <NSObject>
 
-@property (nonatomic, strong) MPAdConfiguration *adConfiguration;
+@property (nonatomic, strong) MMAdConfiguration *adConfiguration;
 @property (nonatomic, copy) NSString *adUnitId;
 @property (nonatomic, copy) CLLocation *location;
 @property (nonatomic, weak) UIView *targetAdView;

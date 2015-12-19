@@ -6,11 +6,11 @@
 //  Copyright (c) 2011 MoPub, Inc. All rights reserved.
 //
 
-#import "UIWebView+MMAdditions.h"
+#import "UIWebView+MPAdditions.h"
 
 NSString *const kJavaScriptDisableDialogSnippet = @"window.alert = function() { }; window.prompt = function() { }; window.confirm = function() { };";
 
-@implementation UIWebView (MMAdditions)
+@implementation UIWebView (MPAdditions)
 
 /*
  * Find all subviews that are UIScrollViews or subclasses and set their scrolling and bounce.

@@ -20,12 +20,15 @@
 		165520931C225E0D00ACE63E /* NSURL+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 165520921C225E0D00ACE63E /* NSURL+MPAdditions.m */; };
 		165771881C23E23500E9F7FD /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165771871C23E23500E9F7FD /* EventKit.framework */; };
 		1657718D1C25406E00E9F7FD /* MMInstanceProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1657718C1C25406E00E9F7FD /* MMInstanceProvider.m */; };
+		165771921C25476200E9F7FD /* NSHTTPURLResponse+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 165771911C25476200E9F7FD /* NSHTTPURLResponse+MPAdditions.m */; };
+		165771951C2548F300E9F7FD /* MRExpandModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 165771941C2548F300E9F7FD /* MRExpandModalViewController.m */; };
+		1657719B1C255AFF00E9F7FD /* UIView+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1657719A1C255AFF00E9F7FD /* UIView+MPAdditions.m */; };
+		1657719E1C255B8100E9F7FD /* UIWebView+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1657719D1C255B8100E9F7FD /* UIWebView+MPAdditions.m */; };
 		1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658CFE21C10316C00C4259F /* MRBundleManager.m */; };
 		166765E81C1147D2002549EB /* MRBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765E71C1147D2002549EB /* MRBridge.m */; };
 		166765EB1C114805002549EB /* MRController.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765EA1C114805002549EB /* MRController.m */; };
 		166765EE1C114825002549EB /* MRCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765ED1C114825002549EB /* MRCommand.m */; };
 		166765F11C114893002549EB /* MRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765F01C114893002549EB /* MRConstants.m */; };
-		1668A52F1C216A40005C7AA8 /* UIWebView+MMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1668A52E1C216A40005C7AA8 /* UIWebView+MMAdditions.m */; };
 		16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE11C156E9E00BA5507 /* MRProperty.m */; };
 		16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */; };
 		16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */; };
@@ -95,6 +98,15 @@
 		165771871C23E23500E9F7FD /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		1657718B1C25406E00E9F7FD /* MMInstanceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMInstanceProvider.h; sourceTree = "<group>"; };
 		1657718C1C25406E00E9F7FD /* MMInstanceProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMInstanceProvider.m; sourceTree = "<group>"; };
+		165771901C25476200E9F7FD /* NSHTTPURLResponse+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+MPAdditions.h"; sourceTree = "<group>"; };
+		165771911C25476200E9F7FD /* NSHTTPURLResponse+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPURLResponse+MPAdditions.m"; sourceTree = "<group>"; };
+		165771931C2548F300E9F7FD /* MRExpandModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRExpandModalViewController.h; sourceTree = "<group>"; };
+		165771941C2548F300E9F7FD /* MRExpandModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRExpandModalViewController.m; sourceTree = "<group>"; };
+		165771961C254EE300E9F7FD /* MPForceableOrientationProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPForceableOrientationProtocol.h; sourceTree = "<group>"; };
+		165771991C255AFF00E9F7FD /* UIView+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MPAdditions.h"; sourceTree = "<group>"; };
+		1657719A1C255AFF00E9F7FD /* UIView+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MPAdditions.m"; sourceTree = "<group>"; };
+		1657719C1C255B8100E9F7FD /* UIWebView+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+MPAdditions.h"; sourceTree = "<group>"; };
+		1657719D1C255B8100E9F7FD /* UIWebView+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+MPAdditions.m"; sourceTree = "<group>"; };
 		1658CFE11C10316C00C4259F /* MRBundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBundleManager.h; sourceTree = "<group>"; };
 		1658CFE21C10316C00C4259F /* MRBundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBundleManager.m; sourceTree = "<group>"; };
 		166765E61C1147D2002549EB /* MRBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBridge.h; sourceTree = "<group>"; };
@@ -105,8 +117,6 @@
 		166765ED1C114825002549EB /* MRCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCommand.m; sourceTree = "<group>"; };
 		166765EF1C114893002549EB /* MRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRConstants.h; sourceTree = "<group>"; };
 		166765F01C114893002549EB /* MRConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRConstants.m; sourceTree = "<group>"; };
-		1668A52D1C216A40005C7AA8 /* UIWebView+MMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+MMAdditions.h"; sourceTree = "<group>"; };
-		1668A52E1C216A40005C7AA8 /* UIWebView+MMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+MMAdditions.m"; sourceTree = "<group>"; };
 		16C6DEE01C156E9E00BA5507 /* MRProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProperty.h; sourceTree = "<group>"; };
 		16C6DEE11C156E9E00BA5507 /* MRProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRProperty.m; sourceTree = "<group>"; };
 		16C6DEE41C159B5D00BA5507 /* MMAdConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdConfiguration.h; sourceTree = "<group>"; };
@@ -192,6 +202,7 @@
 		161B9D991C0ECF8E005FB59B /* MaxMobSDKV2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				1657718E1C25472700E9F7FD /* Utility */,
 				16430FF31C192FC30067374C /* Banner */,
 				16C6DEEB1C16F24100BA5507 /* Public */,
 				16C6DEEA1C16F23100BA5507 /* Common */,
@@ -210,13 +221,33 @@
 			name = Banner;
 			sourceTree = "<group>";
 		};
+		1657718E1C25472700E9F7FD /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1657718F1C25473F00E9F7FD /* Categories */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		1657718F1C25473F00E9F7FD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				165771901C25476200E9F7FD /* NSHTTPURLResponse+MPAdditions.h */,
+				165771911C25476200E9F7FD /* NSHTTPURLResponse+MPAdditions.m */,
+				165520911C225E0D00ACE63E /* NSURL+MPAdditions.h */,
+				165520921C225E0D00ACE63E /* NSURL+MPAdditions.m */,
+				1657719C1C255B8100E9F7FD /* UIWebView+MPAdditions.h */,
+				1657719D1C255B8100E9F7FD /* UIWebView+MPAdditions.m */,
+				165771991C255AFF00E9F7FD /* UIView+MPAdditions.h */,
+				1657719A1C255AFF00E9F7FD /* UIView+MPAdditions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		16C6DEE31C157BE200BA5507 /* MRAID */ = {
 			isa = PBXGroup;
 			children = (
-				165520911C225E0D00ACE63E /* NSURL+MPAdditions.h */,
-				165520921C225E0D00ACE63E /* NSURL+MPAdditions.m */,
-				1668A52D1C216A40005C7AA8 /* UIWebView+MMAdditions.h */,
-				1668A52E1C216A40005C7AA8 /* UIWebView+MMAdditions.m */,
+				165771961C254EE300E9F7FD /* MPForceableOrientationProtocol.h */,
 				161B9D9A1C0ECF8E005FB59B /* MaxMobSDKV2_0.h */,
 				161B9D9C1C0ECF8E005FB59B /* MaxMobSDKV2_0.m */,
 				1658CFE11C10316C00C4259F /* MRBundleManager.h */,
@@ -227,6 +258,8 @@
 				166765EA1C114805002549EB /* MRController.m */,
 				1653BBA31C22A081001271E9 /* MRNativeCommandHandler.h */,
 				1653BBA41C22A081001271E9 /* MRNativeCommandHandler.m */,
+				165771931C2548F300E9F7FD /* MRExpandModalViewController.h */,
+				165771941C2548F300E9F7FD /* MRExpandModalViewController.m */,
 				166765EC1C114825002549EB /* MRCommand.h */,
 				166765ED1C114825002549EB /* MRCommand.m */,
 				166765EF1C114893002549EB /* MRConstants.h */,
@@ -461,6 +494,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				165771921C25476200E9F7FD /* NSHTTPURLResponse+MPAdditions.m in Sources */,
 				1653BBA81C22A57B001271E9 /* MPGlobal.m in Sources */,
 				166765EB1C114805002549EB /* MRController.m in Sources */,
 				166765E81C1147D2002549EB /* MRBridge.m in Sources */,
@@ -471,15 +505,17 @@
 				1653BBA51C22A081001271E9 /* MRNativeCommandHandler.m in Sources */,
 				16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */,
 				1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */,
-				1668A52F1C216A40005C7AA8 /* UIWebView+MMAdditions.m in Sources */,
 				16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */,
 				165520931C225E0D00ACE63E /* NSURL+MPAdditions.m in Sources */,
 				16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */,
 				166765F11C114893002549EB /* MRConstants.m in Sources */,
 				164310341C1987220067374C /* MMClosableView.m in Sources */,
+				1657719B1C255AFF00E9F7FD /* UIView+MPAdditions.m in Sources */,
 				160893411C22DB6E001DEC22 /* MPTimer.m in Sources */,
 				166765EE1C114825002549EB /* MRCommand.m in Sources */,
 				1657718D1C25406E00E9F7FD /* MMInstanceProvider.m in Sources */,
+				1657719E1C255B8100E9F7FD /* UIWebView+MPAdditions.m in Sources */,
+				165771951C2548F300E9F7FD /* MRExpandModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
