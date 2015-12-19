@@ -125,7 +125,6 @@ static NSString *const kMRAIDCommandResize = @"resize";
     return self;
 }
 
-
 -(void)dealloc
 {
     [_adPropertyUpdateTimer invalidate];

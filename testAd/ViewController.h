@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MRControllerNew.h"
 #import "MRController.h"
 
 

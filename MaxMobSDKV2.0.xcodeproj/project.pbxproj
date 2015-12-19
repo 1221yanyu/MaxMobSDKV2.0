@@ -24,6 +24,8 @@
 		165771951C2548F300E9F7FD /* MRExpandModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 165771941C2548F300E9F7FD /* MRExpandModalViewController.m */; };
 		1657719B1C255AFF00E9F7FD /* UIView+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1657719A1C255AFF00E9F7FD /* UIView+MPAdditions.m */; };
 		1657719E1C255B8100E9F7FD /* UIWebView+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1657719D1C255B8100E9F7FD /* UIWebView+MPAdditions.m */; };
+		165771A11C256FE500E9F7FD /* MRControllerNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 165771A01C256FE500E9F7FD /* MRControllerNew.m */; };
+		165771A41C25728B00E9F7FD /* MRAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 165771A31C25728B00E9F7FD /* MRAdView.m */; };
 		1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658CFE21C10316C00C4259F /* MRBundleManager.m */; };
 		166765E81C1147D2002549EB /* MRBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765E71C1147D2002549EB /* MRBridge.m */; };
 		166765EB1C114805002549EB /* MRController.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765EA1C114805002549EB /* MRController.m */; };
@@ -107,6 +109,10 @@
 		1657719A1C255AFF00E9F7FD /* UIView+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MPAdditions.m"; sourceTree = "<group>"; };
 		1657719C1C255B8100E9F7FD /* UIWebView+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+MPAdditions.h"; sourceTree = "<group>"; };
 		1657719D1C255B8100E9F7FD /* UIWebView+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+MPAdditions.m"; sourceTree = "<group>"; };
+		1657719F1C256FE500E9F7FD /* MRControllerNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRControllerNew.h; sourceTree = "<group>"; };
+		165771A01C256FE500E9F7FD /* MRControllerNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRControllerNew.m; sourceTree = "<group>"; };
+		165771A21C25728B00E9F7FD /* MRAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRAdView.h; sourceTree = "<group>"; };
+		165771A31C25728B00E9F7FD /* MRAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRAdView.m; sourceTree = "<group>"; };
 		1658CFE11C10316C00C4259F /* MRBundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBundleManager.h; sourceTree = "<group>"; };
 		1658CFE21C10316C00C4259F /* MRBundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBundleManager.m; sourceTree = "<group>"; };
 		166765E61C1147D2002549EB /* MRBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBridge.h; sourceTree = "<group>"; };
@@ -266,6 +272,10 @@
 				166765F01C114893002549EB /* MRConstants.m */,
 				16C6DEE01C156E9E00BA5507 /* MRProperty.h */,
 				16C6DEE11C156E9E00BA5507 /* MRProperty.m */,
+				1657719F1C256FE500E9F7FD /* MRControllerNew.h */,
+				165771A01C256FE500E9F7FD /* MRControllerNew.m */,
+				165771A21C25728B00E9F7FD /* MRAdView.h */,
+				165771A31C25728B00E9F7FD /* MRAdView.m */,
 			);
 			name = MRAID;
 			sourceTree = "<group>";
@@ -498,6 +508,7 @@
 				1653BBA81C22A57B001271E9 /* MPGlobal.m in Sources */,
 				166765EB1C114805002549EB /* MRController.m in Sources */,
 				166765E81C1147D2002549EB /* MRBridge.m in Sources */,
+				165771A41C25728B00E9F7FD /* MRAdView.m in Sources */,
 				16430FF71C1931AF0067374C /* MMBannerAdManager.m in Sources */,
 				161B9D9D1C0ECF8E005FB59B /* MaxMobSDKV2_0.m in Sources */,
 				163FF4C21C180EAF009846F6 /* MMAdView.m in Sources */,
@@ -506,6 +517,7 @@
 				16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */,
 				1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */,
 				16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */,
+				165771A11C256FE500E9F7FD /* MRControllerNew.m in Sources */,
 				165520931C225E0D00ACE63E /* NSURL+MPAdditions.m in Sources */,
 				16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */,
 				166765F11C114893002549EB /* MRConstants.m in Sources */,

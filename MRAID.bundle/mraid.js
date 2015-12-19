@@ -54,7 +54,7 @@ If you wish to modify mraid.js, modify the version located at mopub-sdk-common/m
 
   bridge.executeNativeCall = function(args) {//主要与SDK交互的主要方法，执行客户端的消息
     var command = args.shift();
-
+ 
     if (!this.nativeSDKFiredReady) {//如果没有准备好，则拒绝执行命令
         console.log('rejecting ' + command + ' because mraid is not ready');
         bridge.notifyErrorEvent('mraid is not ready', command);

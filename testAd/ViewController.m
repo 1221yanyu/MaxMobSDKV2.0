@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MRController.h"
 #import "MRBridge.h"
+//#import "MRControllerNew.h"
 
 @interface ViewController ()
 
@@ -59,6 +60,7 @@
 
 -(void)adDidLoad:(UIView *)adView{
     [self.view addSubview:adView];
+//    mrController.delegate = nil;
 }
 
 -(void)adDidFailToLoad:(UIView *)adView{
