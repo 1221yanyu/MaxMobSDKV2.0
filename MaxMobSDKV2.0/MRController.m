@@ -14,6 +14,7 @@
 #import "MMAdConfiguration.h"
 #import "UIWebView+MMAdditions.h"
 #import "MPTimer.h"
+#import "MPGlobal.h"
 
 static const NSTimeInterval kAdPropertyUpdateTimerInterval = 1.0;
 static const NSTimeInterval kMRAIDResizeAnimationTimeInterval = 0.3;
@@ -24,17 +25,24 @@ static NSString *const kMRAIDCommandResize = @"resize";
 @interface MRController () <MRBridgeDelegate,MMClosableViewDelegate>
 
 @property (nonatomic, strong) MRBridge *mraidBridge;
+@property (nonatomic, strong) MRBridge *mraidBridgeTwoPart;
 @property (nonatomic, assign) MRAdViewPlacementType placementType;
 @property (nonatomic, assign) MRAdViewState currentState;
 @property (nonatomic, assign) CGSize currentAdSize;
 @property (nonatomic, assign) CGRect mraidDefaultAdFrame;
 @property (nonatomic, strong) UIView *resizeBackgroundView;
 @property (nonatomic, assign) NSUInteger modalViewCount;
-@property (nonatomic, assign) BOOL firedReadyEventForDefaultAd;
+@property (nonatomic, assign) BOOL firedReadyEventForDefaultAd;       
 @property (nonatomic, strong) MPTimer *adPropertyUpdateTimer;
-
+@property (nonatomic, assign) BOOL isAnimatingAdSize;
+@property (nonatomic, weak) UIView *originalSuperview;
+@property (nonatomic, assign) BOOL isViewable;
+@property (nonatomic, strong) NSMutableData *twoPartExpandData;
 
 @property (nonatomic, strong) MMClosableView *mraidAdView;
+
+@property (nonatomic, strong) id<MPAdAlertManagerProtocol> adAlertManager;
+@property (nonatomic, strong) id<MPAdAlertManagerProtocol> adAlertManagerTwoPart;
 
 @property (nonatomic, assign) BOOL isAdLoading;
 
@@ -58,9 +66,21 @@ static NSString *const kMRAIDCommandResize = @"resize";
     if (self = [super init]) {
         _placementType = placementType;
         _currentState = MRAdViewStateDefault;
+        _forceOrientationMask = UIInterfaceOrientationMaskAll;
+        _isAnimatingAdSize = NO;
+        _firedReadyEventForDefaultAd = NO;
         _currentAdSize = CGSizeZero;
         
         _mraidDefaultAdFrame = adViewFrame;
+        
+        _adPropertyUpdateTimer = [MPTimer timerWithTimeInterval:kAdPropertyUpdateTimerInterval target:self selector:@selector(updateMRAIDProperties) repeats:YES];
+        
+        _adPropertyUpdateTimer.runLoopMode = NSRunLoopCommonModes;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(viewEnteredBackground)
+                                                     name:UIApplicationDidEnterBackgroundNotification
+                                                   object:nil];
         
         _resizeBackgroundView = [[UIView alloc]initWithFrame:adViewFrame];
         _resizeBackgroundView.backgroundColor = [UIColor clearColor];
@@ -71,17 +91,44 @@ static NSString *const kMRAIDCommandResize = @"resize";
         _mraidBridge.delegate = self;
         _mraidBridge.shouldHandleRequests = YES;
         
+//        _destinationDisplayAgent = [[MPCoreInstanceProvider sharedProvider] buildMPAdDestinationDisplayAgentWithDelegate:self];
+        
         _mraidAdView = [[MMClosableView alloc]initWithFrame:adViewFrame closeButtonType:MMClosableViewCloseButtonTypeTappableWithImage];
         _mraidAdView.delegate = self;
         _mraidAdView.clipsToBounds = YES;
         webView.frame = _mraidAdView.bounds;
         [_mraidAdView addSubview:webView];
         
+        if (placementType == MRAdViewPlacementTypeInterstitial) {
+            _mraidAdView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        }
+        
+        _adAlertManager = [self buildMPAdAlertManagerWithDelegate:self];
+        _adAlertManagerTwoPart = [self buildMPAdAlertManagerWithDelegate:self];
     }
     return self;
 }
 
 
+-(void)dealloc
+{
+    [_adPropertyUpdateTimer invalidate];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - CoreInstanceProvider
+- (id<MPAdAlertManagerProtocol>)buildMPAdAlertManagerWithDelegate:(id)delegate
+{
+    id<MPAdAlertManagerProtocol> adAlertManager = nil;
+    
+    Class adAlertManagerClass = NSClassFromString(@"MPAdAlertManager");
+    if (adAlertManagerClass != nil) {
+        adAlertManager = [[adAlertManagerClass alloc] init];
+        [adAlertManager performSelector:@selector(setDelegate:) withObject:delegate];
+    }
+    
+    return adAlertManager;
+}
 
 #pragma mark - Public
 
@@ -89,6 +136,8 @@ static NSString *const kMRAIDCommandResize = @"resize";
 {
     self.isAdLoading = YES;
     
+    [self initAdAlertManager:self.adAlertManager forAdView:self.mraidAdView];
+
 //    NSString *HTML = [configuration adResponseHTMLString];
     
     NSBundle *parentBundle = [NSBundle mainBundle];
@@ -102,7 +151,7 @@ static NSString *const kMRAIDCommandResize = @"resize";
 - (void)enableRequestHandling
 {
     self.mraidBridge.shouldHandleRequests = YES;
-//    self.mraidBridgeTwoPart.shouldHandleRequests = YES;
+    self.mraidBridgeTwoPart.shouldHandleRequests = YES;
     // If orientation has been forced while requests are disabled (during animation), we need to execute that command through the block forceOrientationAfterAnimationBlock() after the presentation completes.
     if (self.forceOrientationAfterAnimationBlock) {
         self.forceOrientationAfterAnimationBlock();
@@ -113,19 +162,61 @@ static NSString *const kMRAIDCommandResize = @"resize";
 - (void)disableRequestHandling
 {
     self.mraidBridge.shouldHandleRequests = NO;
-//    self.mraidBridgeTwoPart.shouldHandleRequests = NO;
+    self.mraidBridgeTwoPart.shouldHandleRequests = NO;
 //    [self.destinationDisplayAgent cancel];
 }
 
+#pragma mark - Loading Two Part Expand (NSURLConnectionDelegate)
+
+- (void)loadTwoPartCreativeFromURL:(NSURL *)url
+{
+    self.isAdLoading = YES;
+    
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
+    if (connection) {
+        self.twoPartExpandData = [NSMutableData data];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [self.twoPartExpandData setLength:0];
+    
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    
+    NSDictionary *headers = [httpResponse allHeaderFields];
+    NSString *contentType = [headers objectForKey:kMoPubHTTPHeaderContentType];
+    self.responseEncoding = [httpResponse stringEncodingFromContentType:contentType];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.twoPartExpandData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    self.isAdLoading = NO;
+    // No matter what, show the close button on the expanded view.
+    self.expansionContentView.closeButtonType = MPClosableViewCloseButtonTypeTappableWithImage;
+    [self.mraidBridge fireErrorEventForAction:kMRAIDCommandExpand withMessage:@"Could not load URL."];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSString *str = [[NSString alloc] initWithData:self.twoPartExpandData encoding:self.responseEncoding];
+    [self.mraidBridgeTwoPart loadHTMLString:str baseURL:connection.currentRequest.URL];
+}
+
 #pragma mark - Private
-//- (void)initAdAlertManager:(id<MPAdAlertManagerProtocol>)adAlertManager forAdView:(MPClosableView *)adView
-//{
-//    adAlertManager.adConfiguration = [self.delegate adConfiguration];
-//    adAlertManager.adUnitId = [self.delegate adUnitId];
-//    adAlertManager.targetAdView = adView;
-//    adAlertManager.location = [self.delegate location];
-//    [adAlertManager beginMonitoringAlerts];
-//}
+- (void)initAdAlertManager:(id<MPAdAlertManagerProtocol>)adAlertManager forAdView:(MMClosableView *)adView
+{
+    adAlertManager.adConfiguration = [self.delegate adConfiguration];
+    adAlertManager.adUnitId = [self.delegate adUnitId];
+    adAlertManager.targetAdView = adView;
+    adAlertManager.location = [self.delegate location];
+    [adAlertManager beginMonitoringAlerts];
+}
 
 - (MMClosableView *)adViewForBridge:(MRBridge *)bridge
 {
@@ -167,7 +258,7 @@ static NSString *const kMRAIDCommandResize = @"resize";
     webView.backgroundColor = [UIColor clearColor];
     webView.clipsToBounds = YES;
     webView.opaque = NO;
-//    [webView mp_setScrollable:NO];   //找到所有子视图UIScrollViews或子类和设置他们的滚动和反弹
+    [webView mp_setScrollable:NO];   //找到所有子视图UIScrollViews或子类和设置他们的滚动和反弹
     
     if ([webView respondsToSelector:@selector(setAllowsInlineMediaPlayback:)]) {
         [webView setAllowsInlineMediaPlayback:YES];
@@ -203,21 +294,152 @@ static NSString *const kMRAIDCommandResize = @"resize";
         self.currentInterfaceOrientation = newInterfaceOrientation;
     }
 }
+
+#pragma mark - Property Updating
+
+-(void)updateMRAIDProperties
+{
+    if (!self.isAnimatingAdSize) {
+        [self checkViewability];
+        [self updateCurrentPosition];
+        [self updateDefaultPosition];
+        [self updateScreenSize];
+        [self updateMaxSize];
+        [self updateEventSizeChange];
+    }
+}
+
+- (CGRect)activeAdFrameInScreenSpace
+{
+    CGRect visibleFrame = CGRectZero;
+    
+    if (self.placementType == MRAdViewPlacementTypeInline) {
+        if (self.currentState == MRAdViewStateExpanded) {
+            // We're in a modal so we can just return the expanded view's frame.
+            visibleFrame = self.expansionContentView.frame;
+        } else {
+            UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+            visibleFrame = [self.mraidAdView.superview convertRect:self.mraidAdView.frame toView:keyWindow.rootViewController.view];
+        }
+    } else if (self.placementType == MRAdViewPlacementTypeInterstitial) {
+        visibleFrame = self.mraidAdView.frame;
+    }
+    
+    return visibleFrame;
+}
+
+- (CGRect)defaultAdFrameInScreenSpace
+{
+    CGRect defaultFrame = CGRectZero;
+    
+    if (self.placementType == MRAdViewPlacementTypeInline) {
+        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+//        if (self.expansionContentView == self.mraidAdViewTwoPart) {
+//            defaultFrame = [self.mraidAdView.superview convertRect:self.mraidAdView.frame toView:keyWindow.rootViewController.view];
+//        } else {
+            defaultFrame = [self.originalSuperview convertRect:self.mraidDefaultAdFrame toView:keyWindow.rootViewController.view];
+//        }
+    } else if (self.placementType == MRAdViewPlacementTypeInterstitial) {
+        defaultFrame = self.mraidAdView.frame;
+    }
+    
+    return defaultFrame;
+}
+
+
+
+- (void)updateCurrentPosition
+{
+    CGRect frame = [self activeAdFrameInScreenSpace];
+    
+    // Only fire to the active ad view.
+    MRBridge *activeBridge = [self bridgeForActiveAdView];
+    [activeBridge fireSetCurrentPositionWithPositionRect:frame];
+    
+    NSLog(@"Current Position: %@", NSStringFromCGRect(frame));
+}
+
+- (void)updateDefaultPosition
+{
+    CGRect defaultFrame = [self defaultAdFrameInScreenSpace];
+    
+    // Not necessary to fire to both ad views, but it's better that the two-part expand knows the default position than not.
+    [self.mraidBridge fireSetDefaultPositionWithPositionRect:defaultFrame];
+//    [self.mraidBridgeTwoPart fireSetDefaultPositionWithPositionRect:defaultFrame];
+    
+    NSLog(@"Default Position: %@", NSStringFromCGRect(defaultFrame));
+}
+
+- (void)updateScreenSize
+{
+    // Fire an event for screen size changing. This includes the area of the status bar in its calculation.
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    
+    // Fire to both ad views as it pertains to both views.
+    [self.mraidBridge fireSetScreenSize:screenSize];
+//    [self.mraidBridgeTwoPart fireSetScreenSize:screenSize];
+    
+    NSLog(@"Screen Size: %@", NSStringFromCGSize(screenSize));
+}
+
+- (void)updateMaxSize
+{
+    // Similar to updateScreenSize except this doesn't include the area of the status bar in its calculation.
+    CGSize maxSize = [UIScreen mainScreen].bounds.size;
+    
+    // Fire to both ad views as it pertains to both views.
+    [self.mraidBridge fireSetMaxSize:maxSize];
+//    [self.mraidBridgeTwoPart fireSetMaxSize:maxSize];
+    
+    NSLog(@"Max Size: %@", NSStringFromCGSize(maxSize));
+}
+
+
+#pragma mark - MRAID events
+
+- (void)updateEventSizeChange
+{
+    CGSize adSize = [self activeAdFrameInScreenSpace].size;
+    
+    // Firing the size change event will broadcast the event to the ad. The ad may subscribe to this event and
+    // perform some action when it receives the event. As a result, we don't want to have the ad do any work
+    // when the size hasn't changed. So we make sure we don't fire the size change event unless the size has
+    // actually changed. We don't place similar guards around updating properties that don't broadcast events
+    // since the ad won't be notified when we update the properties. Thus, the ad can't do any unnecessary work
+    // when we update other properties.
+    if (!CGSizeEqualToSize(adSize, self.currentAdSize)) {
+        MRBridge *activeBridge = [self bridgeForActiveAdView];
+        self.currentAdSize = adSize;
+        
+        NSLog(@"Ad Size (Size Event): %@", NSStringFromCGSize(self.currentAdSize));
+        [activeBridge fireSizeChangeEvent:adSize];
+    }
+}
+
+- (void)changeStateTo:(MRAdViewState)state
+{
+    self.currentState = state;
+    
+    // Update the mraid properties so they're ready before the state change happens.
+    [self updateMRAIDProperties];
+    [self fireChangeEventToBothBridgesForProperty:[MRStateProperty propertyWithState:self.currentState]];
+}
+
 #pragma mark - Executing Javascript
 
 - (void)initializeLoadedAdForBridge:(MRBridge *)bridge
 {
     // Set up some initial properties so mraid can operate.
     NSLog(@"Injecting initial JavaScript state.");
-//    NSArray *startingMraidProperties = @[[MRHostSDKVersionProperty defaultProperty],
-//                                         [MRPlacementTypeProperty propertyWithType:self.placementType],
-//                                         [MRSupportsProperty defaultProperty],
-//                                         [MRStateProperty propertyWithState:self.currentState]
-//                                         ];
-//    
-//    [bridge fireChangeEventsForProperties:startingMraidProperties];
+    NSArray *startingMraidProperties = @[[MRHostSDKVersionProperty defaultProperty],
+                                         [MRPlacementTypeProperty propertyWithType:self.placementType],
+                                         [MRSupportsProperty defaultProperty],
+                                         [MRStateProperty propertyWithState:self.currentState]
+                                         ];
     
-//    [self updateMRAIDProperties];
+    [bridge fireChangeEventsForProperties:startingMraidProperties];
+    
+    [self updateMRAIDProperties];
     
     [bridge fireReadyEvent];
 }
@@ -226,6 +448,54 @@ static NSString *const kMRAIDCommandResize = @"resize";
 {
     [self.mraidBridge fireChangeEventForProperty:property];
 //    [self.mraidBridgeTwoPart fireChangeEventForProperty:property];
+}
+
+#pragma mark - Viewability Helpers
+
+- (void)checkViewability
+{
+    BOOL viewable = MPViewIsVisible([self activeView]) &&
+    ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive);
+    [self updateViewabilityWithBool:viewable];
+}
+
+BOOL MPViewIsVisible(UIView *view)
+{
+    // In order for a view to be visible, it:
+    // 1) must not be hidden,
+    // 2) must not have an ancestor that is hidden,
+    // 3) must be within the frame of its parent window.
+    //
+    // Note: this function does not check whether any part of the view is obscured by another view.
+    
+    return (!view.hidden &&
+            !MMViewHasHiddenAncestor(view) );
+}
+
+BOOL MMViewHasHiddenAncestor(UIView *view)
+{
+    UIView *ancestor = view.superview;
+    while (ancestor) {
+        if (ancestor.hidden) return YES;
+        ancestor = ancestor.superview;
+    }
+    return NO;
+}
+- (void)viewEnteredBackground
+{
+    [self updateViewabilityWithBool:NO];
+}
+
+- (void)updateViewabilityWithBool:(BOOL)currentViewability
+{
+    if (self.isViewable != currentViewability)
+    {
+        NSLog(@"Viewable changed to: %@", currentViewability ? @"YES" : @"NO");
+        self.isViewable = currentViewability;
+        
+        // Both views in two-part expand need to report if they're viewable or not depending on the active one.
+        [self fireChangeEventToBothBridgesForProperty:[MRViewableProperty propertyWithViewable:self.isViewable]];
+    }
 }
 
 

@@ -87,6 +87,6 @@
 
 @property (nonatomic, assign) BOOL isViewable;
 
-+(MRViewableProperty *)porpertyWithViewable:(BOOL)viewable;
++(MRViewableProperty *)propertyWithViewable:(BOOL)viewable;
 
 @end

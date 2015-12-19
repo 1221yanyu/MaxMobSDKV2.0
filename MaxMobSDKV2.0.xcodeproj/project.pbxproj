@@ -18,6 +18,8 @@
 		1653BBA81C22A57B001271E9 /* MPGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 1653BBA71C22A57B001271E9 /* MPGlobal.m */; };
 		1653BBA91C22A9A3001271E9 /* libMaxMobSDKV2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 161B9D971C0ECF8E005FB59B /* libMaxMobSDKV2.0.a */; };
 		165520931C225E0D00ACE63E /* NSURL+MPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 165520921C225E0D00ACE63E /* NSURL+MPAdditions.m */; };
+		165771881C23E23500E9F7FD /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165771871C23E23500E9F7FD /* EventKit.framework */; };
+		1657718D1C25406E00E9F7FD /* MMInstanceProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1657718C1C25406E00E9F7FD /* MMInstanceProvider.m */; };
 		1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658CFE21C10316C00C4259F /* MRBundleManager.m */; };
 		166765E81C1147D2002549EB /* MRBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765E71C1147D2002549EB /* MRBridge.m */; };
 		166765EB1C114805002549EB /* MRController.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765EA1C114805002549EB /* MRController.m */; };
@@ -90,6 +92,9 @@
 		1653BBA71C22A57B001271E9 /* MPGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGlobal.m; sourceTree = "<group>"; };
 		165520911C225E0D00ACE63E /* NSURL+MPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+MPAdditions.h"; sourceTree = "<group>"; };
 		165520921C225E0D00ACE63E /* NSURL+MPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+MPAdditions.m"; sourceTree = "<group>"; };
+		165771871C23E23500E9F7FD /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		1657718B1C25406E00E9F7FD /* MMInstanceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMInstanceProvider.h; sourceTree = "<group>"; };
+		1657718C1C25406E00E9F7FD /* MMInstanceProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMInstanceProvider.m; sourceTree = "<group>"; };
 		1658CFE11C10316C00C4259F /* MRBundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBundleManager.h; sourceTree = "<group>"; };
 		1658CFE21C10316C00C4259F /* MRBundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBundleManager.m; sourceTree = "<group>"; };
 		166765E61C1147D2002549EB /* MRBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBridge.h; sourceTree = "<group>"; };
@@ -138,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				165771881C23E23500E9F7FD /* EventKit.framework in Frameworks */,
 				1653BBA91C22A9A3001271E9 /* libMaxMobSDKV2.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +168,7 @@
 		161B9D8E1C0ECF8E005FB59B = {
 			isa = PBXGroup;
 			children = (
+				165771871C23E23500E9F7FD /* EventKit.framework */,
 				161B9DA61C0EDD36005FB59B /* MRAID.bundle */,
 				161B9D991C0ECF8E005FB59B /* MaxMobSDKV2.0 */,
 				F4EBE3D31C19BB750004D12E /* testAd */,
@@ -243,6 +250,8 @@
 				164310331C1987220067374C /* MMClosableView.m */,
 				16C6DEE71C16D88400BA5507 /* MMAdServerCommunicator.h */,
 				16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */,
+				1657718B1C25406E00E9F7FD /* MMInstanceProvider.h */,
+				1657718C1C25406E00E9F7FD /* MMInstanceProvider.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -470,6 +479,7 @@
 				164310341C1987220067374C /* MMClosableView.m in Sources */,
 				160893411C22DB6E001DEC22 /* MPTimer.m in Sources */,
 				166765EE1C114825002549EB /* MRCommand.m in Sources */,
+				1657718D1C25406E00E9F7FD /* MMInstanceProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

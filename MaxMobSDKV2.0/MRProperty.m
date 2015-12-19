@@ -131,6 +131,7 @@
     BOOL supportsSms, supportsTel;
 //    supportsSms = supportsTel = [MPCoreInstanceProvider sharedProvider].sharedCarrierInfo[@"carrierName"] != nil;
     BOOL supportsCal = YES;
+    supportsSms = supportsTel =YES;
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
     if ([EKEventStore respondsToSelector:@selector(authorizationStatusForEntityType:)]) {
