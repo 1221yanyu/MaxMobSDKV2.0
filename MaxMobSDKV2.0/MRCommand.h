@@ -82,7 +82,7 @@
 
 //////////////////////////////
 
-@interface MRPlatVideoCommand : MRCommand
+@interface MRPlayVideoCommand : MRCommand
 
 @end
 

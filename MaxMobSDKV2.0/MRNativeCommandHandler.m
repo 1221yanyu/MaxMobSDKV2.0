@@ -37,7 +37,9 @@
 - (void)handleNativeCommand:(NSString *)command withProperties:(NSDictionary *)properties
 {
     BOOL success = YES;
-
+    if ([command isEqualToString:@"expand"]) {
+        NSLog(@"expand");
+    }
     MRCommand *cmd = [MRCommand commandForString:command];
     if (cmd == nil) {
         success = NO;

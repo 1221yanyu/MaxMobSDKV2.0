@@ -22,10 +22,9 @@
     
     CGRect adFrame = CGRectMake(0, 50, 320, 50);
     MMAdConfiguration *configuration;
-    mrController = [[MRControllerNew alloc] initWithAdViewFrame:adFrame adPlacementType:MRAdViewPlacementTypeInline];
+    mrController = [[MRController alloc] initWithAdViewFrame:adFrame adPlacementType:MRAdViewPlacementTypeInline];
     mrController.delegate = self;
     [mrController loadAdWithConfiguration:configuration];
-    
 
     
     

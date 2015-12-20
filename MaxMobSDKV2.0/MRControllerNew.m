@@ -24,6 +24,8 @@
 @property (nonatomic, assign) CGRect mraidDefaultAdFrame;
 @property (nonatomic, assign) CGSize currentAdSize;
 @property (nonatomic, assign) BOOL isAnimatingAdSize;
+@property (nonatomic, assign) BOOL isViewable;
+
 
 
 
@@ -138,7 +140,8 @@
     [bridge fireChangeEventsForProperties:startingMraidProperties];
     
     [self updateMRAIDProperties];
-    
+//    [bridge fireViewableChangeEvent:TRUE];
+//    [bridge fireStateChangeEvent:@"loading"];
     [bridge fireReadyEvent];
 }
 
@@ -148,11 +151,39 @@
     //    [self.mraidBridgeTwoPart fireChangeEventForProperty:property];
 }
 
+
+#pragma mark - Viewability Helpers
+
+- (void)checkViewability
+{
+    BOOL viewable = MPViewIsVisible([self activeView]) &&
+    ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive);
+    [self updateViewabilityWithBool:viewable];
+}
+
+- (void)viewEnteredBackground
+{
+    [self updateViewabilityWithBool:NO];
+}
+
+- (void)updateViewabilityWithBool:(BOOL)currentViewability
+{
+    if (self.isViewable != currentViewability)
+    {
+        NSLog(@"Viewable changed to: %@", currentViewability ? @"YES" : @"NO");
+        self.isViewable = currentViewability;
+        
+        // Both views in two-part expand need to report if they're viewable or not depending on the active one.
+        [self fireChangeEventToBothBridgesForProperty:[MRViewableProperty propertyWithViewable:self.isViewable]];
+    }
+}
+
+
 #pragma mark - Property Updating
 -(void)updateMRAIDProperties
 {
     if (!self.isAnimatingAdSize) {
-        [self fireChangeEventToBothBridgesForProperty:[MRViewableProperty propertyWithViewable:YES]];
+        [self checkViewability];
         [self updateCurrentPosition];
         [self updateDefaultPosition];
         [self updateScreenSize];

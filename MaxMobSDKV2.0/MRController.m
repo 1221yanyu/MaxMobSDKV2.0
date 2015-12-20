@@ -158,7 +158,7 @@ static NSString *const kMRAIDCommandResize = @"resize";
     NSBundle *parentBundle = [NSBundle mainBundle];
     NSString *mraidBundlePath = [parentBundle pathForResource:@"MRAID" ofType:@"bundle"];
     NSBundle *mraidBundle = [NSBundle bundleWithPath:mraidBundlePath];
-    NSString *htmlPath = [mraidBundle pathForResource:@"readAd" ofType:@"html"];
+    NSString *htmlPath = [mraidBundle pathForResource:@"mraid_fullpage" ofType:@"html"];
     NSString *HTML = [[NSString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
     [self.mraidBridge loadHTMLString:HTML baseURL:nil];
     

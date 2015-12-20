@@ -24,6 +24,11 @@
 -(void)loadHTMLString:(NSString *)HTML baseURL:(NSURL *)baseURL;
 
 -(void)fireReadyEvent;
+
+-(void)fireStateChangeEvent:(NSString *)state;
+
+-(void)fireViewableChangeEvent:(BOOL)viewable;
+
 -(void)fireChangeEventForProperty:(MRProperty *)property;
 -(void)fireChangeEventsForProperties:(NSArray *)properties;
 -(void)fireErrorEventForAction:(NSString *)action withMessage:(NSString *)message;

@@ -100,6 +100,16 @@ NSDictionary *MMDictionaryFromQueryString(NSString *query) {
     [self executeJavascript:@"window.mraidbridge.fireReadyEvent();"];
 }
 
+-(void)fireStateChangeEvent:(NSString *)state
+{
+    [self executeJavascript:@"window.mraidbridge.fireStateChangeEvent(%@);",state];
+}
+
+-(void)fireViewableChangeEvent:(BOOL)viewable
+{
+    [self executeJavascript:@"window.mraidbridge.fireViewableChangeEvent(%@)",viewable];
+}
+
 -(void)fireChangeEventForProperty:(MRProperty *)property
 {
     NSString *JSON = [NSString stringWithFormat:@"{%@}", property];
