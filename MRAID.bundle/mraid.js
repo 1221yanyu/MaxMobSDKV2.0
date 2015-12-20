@@ -2,7 +2,7 @@
 Do not modify this version of the file.  It will be copied over when any of the project's targets are built.
 If you wish to modify mraid.js, modify the version located at mopub-sdk-common/mraid/mraid.js.
 */
-(function() {//解决console.log在iOS的uiwebview中使用的问题
+(function() {
   var isIOS = (/iphone|ipad|ipod/i).test(window.navigator.userAgent.toLowerCase());
   if (isIOS) {
     console = {};

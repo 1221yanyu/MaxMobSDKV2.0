@@ -1,97 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: transparent;
-        }
-    </style>
-    <!-- Adgroup is a9b64338add311e281c11231392559e4 -->
-    <script type="text/javascript">
-        if (trackImpressionHelper == null || typeof(trackImpressionHelper) != "function") {
-            function trackImpressionHelper() {
-                var urls = new Array();
-                var i = 0;
-                var hiddenSpan = document.createElement('span');
-                hiddenSpan.style.display = 'none';
-                var i = 0;
-                for (var i = 0; i < urls.length; i++) {
-                    var img = document.createElement('img');
-                    img.src = urls[i];
-                    hiddenSpan.appendChild(img);
-                }
-                var body = document.getElementsByTagName('body')[0];
-                body.appendChild(hiddenSpan);
-            }
-        }
-    </script>
-    <script type="text/javascript">
-        if (typeof trackImpressionHelper == 'function') {
-            trackImpressionHelper();
-        }
-        function webviewDidAppear() {
-        }
-    </script>
-</head>
-<body>
-<style>
+<!DOCTYPE html> <html> <head> <style> body { margin:0; padding:0; overflow:hidden; background:transparent; } </style> <!-- Adgroup is a9b64338add311e281c11231392559e4 --> <script type="text/javascript"> if (trackImpressionHelper == null || typeof(trackImpressionHelper) != "function") { function trackImpressionHelper() { var urls = new Array(); var i = 0;  var hiddenSpan = document.createElement('span'); hiddenSpan.style.display = 'none'; var i = 0; for (var i=0;i<urls.length;i++) { var img = document.createElement('img'); img.src = urls[i]; hiddenSpan.appendChild(img); } var body = document.getElementsByTagName('body')[0]; body.appendChild(hiddenSpan); } } </script>  <script type="text/javascript">  if (typeof trackImpressionHelper == 'function') { trackImpressionHelper(); }  function webviewDidAppear() {  }  </script> </head> <body> <style>
     #banner {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        display: block;
-        background: #069;
-        height: 50px;
-        width: 320px;
-        padding: 0px;
+        position:absolute;
+        left:0px;
+        top:0px;
+        display:block;
+        background:#069;
+        height:50px;
+        width:320px;
+        padding:0px;
     }
-
-    #expand {
-        position: absolute;
-        left: 275px;
-        top: 5px;
-    }
-
-    #expandedad {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        display: none;
-        height: 480px;
-        width: 320px;
-    }
-
-    #expanddata {
-        position: absolute;
-        left: 15px;
-        top: 15px;
-    }
-
-    img {
-        border: none
-    }
-
-    #ad {
-        font: .8em "Trebuchet MS", Arial,
-        Helvetica, sans-serif;
-        color: #FFF
-    }
-
-    #ad #banner #bannercopy {
-        position: absolute;
-        left: 9px;
-        top: 10px;
-        color: #FFF;
-    }
+#expand {
+    position:absolute;
+    left:275px;
+    top:5px;
+}
+#expandedad {
+    position:absolute;
+    left:0px;
+    top:0px;
+    display:none;
+    height:480px;
+    width:320px;
+}
+#expanddata {
+    position:absolute;
+    left:15px;
+    top:15px;
+}
+img {
+    border:none
+}
+#ad {
+    font:.8em "Trebuchet MS", Arial, Helvetica, sans-serif;
+    color:#FFF
+}
+#ad #banner #bannercopy {
+    position: absolute;
+    left: 9px;
+    top: 10px;
+    color: #FFF;
+}
 </style>
-<script src="mraid.js">
-</script>
+
+<script src="mraid.js"></script>
 <script language="javascript">
     mraid.addEventListener('ready', handleReadyEvent);
-
+    
     function handleReadyEvent() {
         console.log('MRAID Version: ' + mraid.getVersion());
         printProperties('Ready event.');
@@ -100,72 +54,61 @@
         //printProperties('Ad displayed.');
     }
 
-    function handleStateChangeEvent(state) {
-        //printProperties('Before handle state change ' + state);
-        var banner = document.getElementById('banner');
-        var expandedad = document.getElementById('expandedad');
-        if (state === 'default') {
-            showDefault();
-        } else if (state === 'expanded') {
-            showExpanded();
-        }
-        printProperties('After handle state change ' + state);
+function handleStateChangeEvent(state) {
+    //printProperties('Before handle state change ' + state);
+    var banner = document.getElementById('banner');
+    var expandedad = document.getElementById('expandedad');
+    if (state === 'default') {
+        showDefault();
     }
+    else if (state === 'expanded') {
+        showExpanded();
+    }
+    printProperties('After handle state change ' + state);
+}
 
-    function showDefault() {
-        banner.style.display = 'block';
-        expandedad.style.display = 'none';
-    }
+function showDefault() {
+    banner.style.display = 'block';
+    expandedad.style.display = 'none';
+}
 
-    function showExpanded() {
-        banner.style.display = 'none';
-        expandedad.style.display = 'block';
-    }
+function showExpanded() {
+    banner.style.display = 'none';
+    expandedad.style.display = 'block';
+}
 
-    function expandAd() {
-        mraid.expand();
-    }
+function expandAd() {
+    mraid.expand();
+}
 
-    function shrinkAd() {
-        mraid.close();
-    }
+function shrinkAd() {
+    mraid.close();
+}
 
-    function printProperties(intro_message) {
-        if (intro_message) console.log(intro_message);
-        console.log('--------------------');
-        console.log('Printing Properties!');
-        console.log('Expand Properties: ' + JSON.stringify(mraid.getExpandProperties()));
-        console.log('Placement Type: ' + mraid.getPlacementType());
-        console.log('State: ' + mraid.getState());
-        console.log('Viewable: ' + mraid.isViewable());
-        console.log('--------------------');
-    }
+function printProperties(intro_message) {
+    if (intro_message) console.log(intro_message);
+    console.log('--------------------');
+    console.log('Printing Properties!');
+    console.log('Expand Properties: ' + JSON.stringify(mraid.getExpandProperties()));
+    console.log('Placement Type: ' + mraid.getPlacementType());
+    console.log('State: ' + mraid.getState());
+    console.log('Viewable: ' + mraid.isViewable());
+    console.log('--------------------');
+}
 </script>
+
 <div id='ad'>
     <!-- The standard banner ad state (default state) -->
     <div id='banner'>
-        <div id="bannercopy">
-            <b>
-                320x50 Banner
-            </b>
-            <br/>
-            Test Expansion with Transparency
-        </div>
-        <div id='expand'>
-            <img src="http://i1255.photobucket.com/albums/hh637/natmopub/maximize-icon.png"
-                 alt="expand" onclick="expandAd();"/>
-        </div>
+        <div id="bannercopy"><b>320x50 Banner</b><br/>Test Expansion with Transparency</div>
+        <div id='expand'> <img src="http://i1255.photobucket.com/albums/hh637/natmopub/maximize-icon.png"
+            alt="expand" onclick="expandAd();" /> </div>
     </div>
+    
     <!-- The expanded ad (expanded state) -->
     <div id='expandedad' align="center">
-        <img src="http://i1255.photobucket.com/albums/hh637/natmopub/mp-interstitial-320x480.png"
-             alt="expanded ad"/>
-
-        <div id='expanddata' align="center">
-            AD is Expanded.
-        </div>
+        <img src="http://i1255.photobucket.com/albums/hh637/natmopub/mp-interstitial-320x480.png" alt="expanded ad"/>
+        <div id='expanddata' align="center">AD is Expanded.</div>
     </div>
 </div>
-</body>
-
-</html>
+</body> </html>

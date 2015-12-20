@@ -56,8 +56,10 @@ CGRect MPScreenBounds()
         CGFloat width = bounds.size.width;
         bounds.size.width = bounds.size.height;
         bounds.size.height = width;
+       
     }
-
+    bounds.size.width =320;
+    bounds.size.height = 568;
     return bounds;
 }
 

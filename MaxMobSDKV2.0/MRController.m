@@ -657,6 +657,95 @@ static NSString *const kMRAIDCommandResize = @"resize";
     }];
 }
 
+#pragma mark - Close Helpers
+
+- (void)close
+{
+    switch (self.currentState) {
+        case MRAdViewStateDefault:
+            [self closeFromDefaultState];
+            break;
+        case MRAdViewStateExpanded:
+            [self closeFromExpandedState];
+            break;
+        case MRAdViewStateResized:
+            [self closeFromResizedState];
+            break;
+        case MRAdViewStateHidden:
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)closeFromDefaultState
+{
+    [self adWillClose];
+    
+    self.mraidAdView.hidden = YES;
+    [self changeStateTo:MRAdViewStateHidden];
+    
+    [self adDidClose];
+}
+
+- (void)closeFromExpandedState
+{
+    self.mraidAdView.closeButtonType = MMClosableViewCloseButtonTypeNone;
+    
+    // Immediately re-parent the ad so it will show up as the expand modal goes away rather than after.
+    [self.originalSuperview addSubview:self.mraidAdView];
+    self.mraidAdView.frame = self.mraidDefaultAdFrame;
+    if (self.placementType != MRAdViewPlacementTypeInterstitial) {
+        self.mraidAdView.autoresizingMask = UIViewAutoresizingNone;
+    }
+    
+    // Track isAnimatingAdSize because we have a timer that will update the mraid ad properties. We don't want to examine our views when
+    // they're in a transitional state.
+    [self willBeginAnimatingAdSize];
+    
+    // Tell the modal view controller to restore the state of the status bar back to what the application had it set to.
+    [self.expandModalViewController restoreStatusBarVisibility];
+    __weak __typeof__(self) weakSelf = self;
+    [self.expandModalViewController dismissViewControllerAnimated:YES completion:^{
+        __typeof__(self) strongSelf = weakSelf;
+        
+        
+        [strongSelf didEndAnimatingAdSize];
+        [strongSelf adDidDismissModalView];
+        
+        // Get rid of the bridge and view if we are closing from two-part expand.
+        if (strongSelf.mraidAdViewTwoPart) {
+            [strongSelf.adAlertManagerTwoPart endMonitoringAlerts];
+            strongSelf.mraidAdViewTwoPart = nil;
+            strongSelf.mraidBridgeTwoPart = nil;
+        }
+        
+        strongSelf.expansionContentView = nil;
+        strongSelf.expandModalViewController = nil;
+        
+        // Waiting this long to change the state results in some awkward animation. The full screen ad will briefly appear in the banner's
+        // frame after the modal dismisses. However, this is a much safer time to change the state and results in less side effects.
+        [strongSelf changeStateTo:MRAdViewStateDefault];
+    }];
+}
+
+- (void)closeFromResizedState
+{
+    self.mraidAdView.closeButtonType = MMClosableViewCloseButtonTypeNone;
+    
+    [self willBeginAnimatingAdSize];
+    
+    [UIView animateWithDuration:kMRAIDResizeAnimationTimeInterval animations:^{
+        self.mraidAdView.frame = self.mraidDefaultAdFrameInKeyWindow;
+    } completion:^(BOOL finished) {
+        [self.resizeBackgroundView removeFromSuperview];
+        [self.originalSuperview addSubview:self.mraidAdView];
+        self.mraidAdView.frame = self.mraidDefaultAdFrame;
+        [self changeStateTo:MRAdViewStateDefault];
+        [self didEndAnimatingAdSize];
+        [self adDidDismissModalView];
+    }];
+}
 
 
 #pragma mark - <MRBridgeDelegate>
@@ -911,7 +1000,7 @@ static NSString *const kMRAIDCommandResize = @"resize";
 
 - (void)closeButtonPressed:(MMClosableView *)view
 {
-//    [self close];
+    [self close];
 }
 
 - (void)closableView:(MMClosableView *)closableView didMoveToWindow:(UIWindow *)window

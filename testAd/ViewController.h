@@ -12,9 +12,9 @@
 
 
 
-@interface ViewController : UIViewController < MRControllerDelegate>
+@interface ViewController : UIViewController < MRControllerNewDelegate>
 {
-    MRController *mrController;
+    MRControllerNew *mrController;
 }
 
 @end

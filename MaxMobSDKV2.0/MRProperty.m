@@ -30,7 +30,7 @@
 + (instancetype)defaultProperty
 {
     MRHostSDKVersionProperty *property = [[self alloc] init];
-    property.version = @"2.0";
+    property.version = @"4.1.0";
     return property;
 }
 
@@ -131,7 +131,7 @@
     BOOL supportsSms, supportsTel;
 //    supportsSms = supportsTel = [MPCoreInstanceProvider sharedProvider].sharedCarrierInfo[@"carrierName"] != nil;
     BOOL supportsCal = YES;
-    supportsSms = supportsTel =YES;
+    supportsSms = supportsTel =NO;
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
     if ([EKEventStore respondsToSelector:@selector(authorizationStatusForEntityType:)]) {
