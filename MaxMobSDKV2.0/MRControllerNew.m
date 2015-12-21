@@ -40,8 +40,8 @@
         _currentState = MRAdViewStateDefault;
         
         _mraidDefaultAdFrame = adViewFrame;
-        
         _mraidWebView = [self buildMRAIDWebViewWithFrame:adViewFrame];
+        _originalSuperview = _mraidWebView.superview;
         _mraidBridge = [[MRBridge alloc] initWithWebView:_mraidWebView];
         _mraidBridge.delegate = self;
         _mraidBridge.shouldHandleRequests = YES;
@@ -51,7 +51,7 @@
 - (MRAdView *)activeView
 {
     if (self.currentState == MRAdViewStateExpanded) {
-        return self.expansionContentView;
+        return self.mraidWebView;
     }
     
     return self.mraidWebView;
@@ -118,11 +118,51 @@
     NSBundle *parentBundle = [NSBundle mainBundle];
     NSString *mraidBundlePath = [parentBundle pathForResource:@"MRAID" ofType:@"bundle"];
     NSBundle *mraidBundle = [NSBundle bundleWithPath:mraidBundlePath];
-    NSString *htmlPath = [mraidBundle pathForResource:@"readAd" ofType:@"html"];
+    NSString *htmlPath = [mraidBundle pathForResource:TestHTMLMopubBanner ofType:@"html"];
     NSString *HTML = [[NSString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
     [self.mraidBridge loadHTMLString:HTML baseURL:nil];
     
 }
+
+
+#pragma mark - Execute
+
+- (BOOL)executeWithParams:(NSDictionary *)params
+{
+    NSURL *url = [self urlFromParameters:params forKey:@"url"];
+    
+    NSDictionary *expandParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  (url == nil) ? [NSNull null] : url , @"url",
+                                  [NSNumber numberWithBool:[self boolFromParameters:params forKey:@"shouldUseCustomClose"]], @"useCustomClose",
+                                  nil];
+    
+    return YES;
+}
+
+- (BOOL)boolFromParameters:(NSDictionary *)parameters forKey:(NSString *)key
+{
+    NSString *stringValue = [parameters valueForKey:key];
+    return [stringValue isEqualToString:@"true"] || [stringValue isEqualToString:@"1"];
+}
+
+- (NSString *)stringFromParameters:(NSDictionary *)parameters forKey:(NSString *)key
+{
+    NSString *value = [parameters objectForKey:key];
+    if (!value || [value isEqual:[NSNull null]]) return nil;
+    
+    value = [value stringByTrimmingCharactersInSet:
+             [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (!value || [value isEqual:[NSNull null]] || value.length == 0) return nil;
+    
+    return value;
+}
+
+- (NSURL *)urlFromParameters:(NSDictionary *)parameters forKey:(NSString *)key
+{
+    NSString *value = [self stringFromParameters:parameters forKey:key];
+    return [NSURL URLWithString:value];
+}
+
 
 
 #pragma mark - Executing Javascript
@@ -131,8 +171,7 @@
 {
     // Set up some initial properties so mraid can operate.
     NSLog(@"Injecting initial JavaScript state.");
-    NSArray *startingMraidProperties = @[[MRHostSDKVersionProperty defaultProperty],
-                                         [MRPlacementTypeProperty propertyWithType:self.placementType],
+    NSArray *startingMraidProperties = @[[MRPlacementTypeProperty propertyWithType:self.placementType],
                                          [MRSupportsProperty defaultProperty],
                                          [MRStateProperty propertyWithState:self.currentState]
                                          ];
@@ -140,8 +179,6 @@
     [bridge fireChangeEventsForProperties:startingMraidProperties];
     
     [self updateMRAIDProperties];
-//    [bridge fireViewableChangeEvent:TRUE];
-//    [bridge fireStateChangeEvent:@"loading"];
     [bridge fireReadyEvent];
 }
 
@@ -156,8 +193,7 @@
 
 - (void)checkViewability
 {
-    BOOL viewable = MPViewIsVisible([self activeView]) &&
-    ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive);
+    BOOL viewable = MPViewIsVisible([self activeView]) && ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive);
     [self updateViewabilityWithBool:viewable];
 }
 
@@ -199,7 +235,7 @@
     if (self.placementType == MRAdViewPlacementTypeInline) {
         if (self.currentState == MRAdViewStateExpanded) {
             // We're in a modal so we can just return the expanded view's frame.
-            visibleFrame = self.expansionContentView.frame;
+            visibleFrame = self.mraidWebView.frame;
         } else {
             UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
             visibleFrame = [self.mraidWebView.superview convertRect:self.mraidWebView.frame toView:keyWindow.rootViewController.view];
@@ -317,6 +353,25 @@
 -(void)bridge:(MRBridge *)bridge didFailLoadingWebView:(UIWebView *)webView error:(NSError *)error
 {
     
+}
+-(void)bridge:(MRBridge *)bridge handleNativeCommand:(NSString *)command withProperties:(NSDictionary *)properties
+{
+    NSLog(@"command is %@",command);
+    if ([command isEqualToString:CommandExpand]) {
+        CGRect screenFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        _mraidWebView.frame= screenFrame;
+        BOOL usrCustomClose =  [NSNumber numberWithBool:[self boolFromParameters:properties forKey:@"shouldUseCustomClose"]];
+        self.currentState = MRAdViewStateExpanded;
+        NSArray *startingMraidProperties = @[[MRPlacementTypeProperty propertyWithType:self.placementType],
+                                              [MRSupportsProperty defaultProperty],
+                                              [MRStateProperty propertyWithState:self.currentState]
+                                              ];
+        [bridge fireChangeEventsForProperties:startingMraidProperties];
+        [bridge fireCommandCompleted:command];
+    }else if ([command isEqualToString:CommandSetOrientationProperties])
+    {
+        
+    }
 }
 
 -(void)handleNativeCommandCloseWithBridge:(MRBridge *)bridge{

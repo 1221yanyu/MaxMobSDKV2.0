@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "MRConstants.h"
+
+#define TestHTMLMopubBanner @"readAd"
+#define TestHTMLExpand @"mraid_expand"
+
+
+#define CommandExpand @"expand"
+#define CommandSetOrientationProperties @"setOrientationProperties"
+#define CommandClose @"close"
+
 @protocol MRControllerNewDelegate;
 @class MMAdConfiguration;
 @class CLLocation;

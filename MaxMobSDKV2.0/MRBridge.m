@@ -161,7 +161,10 @@ NSDictionary *MMDictionaryFromQueryString(NSString *query) {
     [self executeJavascript:@"window.mraidbridge.setMaxSize(%.1f, %.1f);", maxSize.width, maxSize.height];
 }
 
-
+- (void)fireCommandCompleted:(NSString *)command
+{
+    [self fireNativeCommandCompleteEvent:command];
+}
 
 #pragma mark - <UIWebViewDelegate>
 
@@ -178,7 +181,8 @@ NSDictionary *MMDictionaryFromQueryString(NSString *query) {
         NSLog(@"Trying to process command: %@", urlString);
         NSString *command = url.host;
         NSDictionary *properties = MMDictionaryFromQueryString(url.query);
-        [self.nativeCommandHandler handleNativeCommand:command withProperties:properties];
+        [self.delegate bridge:self handleNativeCommand:command withProperties:properties];
+//        [self.nativeCommandHandler handleNativeCommand:command withProperties:properties];
         return NO;
     } else if ([[url scheme] isEqualToString:kMoPubURLScheme]) {
         

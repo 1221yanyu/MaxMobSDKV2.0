@@ -40,7 +40,7 @@
 -(void)fireSetCurrentPositionWithPositionRect:(CGRect)positionRect;
 -(void)fireSetDefaultPositionWithPositionRect:(CGRect)positionRect;
 -(void)fireSetMaxSize:(CGSize)maxSize;
-
+- (void)fireCommandCompleted:(NSString *)command;
 @end
 
 
@@ -64,5 +64,7 @@
 -(void)bridge:(MRBridge *)bridge handleNativeCommandSetOrientationPropertiesWithForceOrientationMask:(UIInterfaceOrientationMask)forceOrientationMask;
 -(void)bridge:(MRBridge *)bridge handleNativeCommandExpandWithURL:(NSURL *)url useCustomClose:(BOOL)useCustomClose;
 -(void)bridge:(MRBridge *)bridge handleNativeCommandResizeWithParameters:(NSDictionary *)parameters;
+
+-(void)bridge:(MRBridge *)bridge handleNativeCommand:(NSString *)command withProperties:(NSDictionary *)properties;
 
 @end
