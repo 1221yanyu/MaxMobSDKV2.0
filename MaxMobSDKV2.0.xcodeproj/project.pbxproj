@@ -28,7 +28,6 @@
 		165771A41C25728B00E9F7FD /* MRAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 165771A31C25728B00E9F7FD /* MRAdView.m */; };
 		1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658CFE21C10316C00C4259F /* MRBundleManager.m */; };
 		166765E81C1147D2002549EB /* MRBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765E71C1147D2002549EB /* MRBridge.m */; };
-		166765EB1C114805002549EB /* MRController.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765EA1C114805002549EB /* MRController.m */; };
 		166765EE1C114825002549EB /* MRCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765ED1C114825002549EB /* MRCommand.m */; };
 		166765F11C114893002549EB /* MRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765F01C114893002549EB /* MRConstants.m */; };
 		16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE11C156E9E00BA5507 /* MRProperty.m */; };
@@ -117,8 +116,6 @@
 		1658CFE21C10316C00C4259F /* MRBundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBundleManager.m; sourceTree = "<group>"; };
 		166765E61C1147D2002549EB /* MRBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRBridge.h; sourceTree = "<group>"; };
 		166765E71C1147D2002549EB /* MRBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRBridge.m; sourceTree = "<group>"; };
-		166765E91C114805002549EB /* MRController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRController.h; sourceTree = "<group>"; };
-		166765EA1C114805002549EB /* MRController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRController.m; sourceTree = "<group>"; };
 		166765EC1C114825002549EB /* MRCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCommand.h; sourceTree = "<group>"; };
 		166765ED1C114825002549EB /* MRCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCommand.m; sourceTree = "<group>"; };
 		166765EF1C114893002549EB /* MRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRConstants.h; sourceTree = "<group>"; };
@@ -260,8 +257,6 @@
 				1658CFE21C10316C00C4259F /* MRBundleManager.m */,
 				166765E61C1147D2002549EB /* MRBridge.h */,
 				166765E71C1147D2002549EB /* MRBridge.m */,
-				166765E91C114805002549EB /* MRController.h */,
-				166765EA1C114805002549EB /* MRController.m */,
 				1653BBA31C22A081001271E9 /* MRNativeCommandHandler.h */,
 				1653BBA41C22A081001271E9 /* MRNativeCommandHandler.m */,
 				165771931C2548F300E9F7FD /* MRExpandModalViewController.h */,
@@ -506,7 +501,6 @@
 			files = (
 				165771921C25476200E9F7FD /* NSHTTPURLResponse+MPAdditions.m in Sources */,
 				1653BBA81C22A57B001271E9 /* MPGlobal.m in Sources */,
-				166765EB1C114805002549EB /* MRController.m in Sources */,
 				166765E81C1147D2002549EB /* MRBridge.m in Sources */,
 				165771A41C25728B00E9F7FD /* MRAdView.m in Sources */,
 				16430FF71C1931AF0067374C /* MMBannerAdManager.m in Sources */,

@@ -14,6 +14,9 @@
 #import "MPGlobal.h"
 
 @interface MRControllerNew () <MRBridgeDelegate>
+{
+    UIButton *closeButton;
+}
 @property (nonatomic, strong) MRBridge *mraidBridge;
 @property (nonatomic, strong) UIWebView *mraidWebView;
 @property (nonatomic, assign) NSUInteger modalViewCount;
@@ -25,7 +28,6 @@
 @property (nonatomic, assign) CGSize currentAdSize;
 @property (nonatomic, assign) BOOL isAnimatingAdSize;
 @property (nonatomic, assign) BOOL isViewable;
-
 
 
 
@@ -45,6 +47,12 @@
         _mraidBridge = [[MRBridge alloc] initWithWebView:_mraidWebView];
         _mraidBridge.delegate = self;
         _mraidBridge.shouldHandleRequests = YES;
+        
+        /* 注册监听view进入后台事件 */
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewEnteredBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        
+        /* 注册监听view后台唤醒事件 */
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewEnteredForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
     return self;
 }
@@ -118,14 +126,66 @@
     NSBundle *parentBundle = [NSBundle mainBundle];
     NSString *mraidBundlePath = [parentBundle pathForResource:@"MRAID" ofType:@"bundle"];
     NSBundle *mraidBundle = [NSBundle bundleWithPath:mraidBundlePath];
-    NSString *htmlPath = [mraidBundle pathForResource:TestHTMLMopubBanner ofType:@"html"];
+    NSString *htmlPath = [mraidBundle pathForResource:TestHTMLVideoInterstitial ofType:@"html"];
     NSString *HTML = [[NSString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
     [self.mraidBridge loadHTMLString:HTML baseURL:nil];
     
 }
 
 
+-(void)clickCloseBtn
+{
+    _mraidWebView.frame= _mraidDefaultAdFrame;
+    self.currentState = MRAdViewStateDefault;
+    NSArray *startingMraidProperties = @[[MRPlacementTypeProperty propertyWithType:self.placementType],
+                                         [MRSupportsProperty defaultProperty],
+                                         [MRStateProperty propertyWithState:self.currentState]
+                                         ];
+    MRBridge *bridge = [self bridgeForActiveAdView];
+    [bridge fireChangeEventsForProperties:startingMraidProperties];
+    [bridge fireCommandCompleted:@"close"];
+    closeButton.hidden = YES;
+}
+
+
+
 #pragma mark - Execute
+
+-(void)setCloseButton
+{
+//    _closeButton = [[UIButton alloc]initWithFrame:CGRectMake(_mraidWebView.frame.size.width-40, 0, 40, 40)];
+    closeButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    closeButton.frame = CGRectMake(_mraidWebView.frame.size.width-40, 0, 40, 40);
+    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"MRAID" ofType:@"bundle"]];
+    NSString *imageURL = [bundle pathForResource:@"CloseBtn" ofType:@"png"];
+    [closeButton setBackgroundImage:[UIImage imageWithContentsOfFile:imageURL] forState:UIControlStateNormal];
+    closeButton.backgroundColor = [UIColor clearColor];
+}
+
+-(void)expand:(MRBridge *)bridge command:(NSString *)command properties:(NSDictionary *)properties
+{
+    CGRect screenFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    _mraidWebView.frame= screenFrame;
+    NSURL *url = [self urlFromParameters:properties forKey:@"url"];
+    if (url) {
+        NSLog(@"%@",url);
+    }
+    NSString *usrCustomClose = [properties valueForKey:@"shouldUseCustomClose"];
+    if ([usrCustomClose isEqualToString:@"false"]) {
+        [self setCloseButton];
+        closeButton.hidden = NO;
+        [closeButton addTarget:self action:@selector(clickCloseBtn) forControlEvents:UIControlEventTouchUpInside];
+        [_mraidWebView addSubview:closeButton];
+    }
+    self.currentState = MRAdViewStateExpanded;
+    NSArray *startingMraidProperties = @[[MRPlacementTypeProperty propertyWithType:self.placementType],
+                                         [MRSupportsProperty defaultProperty],
+                                         [MRStateProperty propertyWithState:self.currentState]
+                                         ];
+    [bridge fireChangeEventsForProperties:startingMraidProperties];
+    [bridge fireCommandCompleted:command];
+
+}
 
 - (BOOL)executeWithParams:(NSDictionary *)params
 {
@@ -200,6 +260,11 @@
 - (void)viewEnteredBackground
 {
     [self updateViewabilityWithBool:NO];
+}
+
+-(void)viewEnteredForeground
+{
+    [self updateViewabilityWithBool:YES];
 }
 
 - (void)updateViewabilityWithBool:(BOOL)currentViewability
@@ -358,16 +423,9 @@
 {
     NSLog(@"command is %@",command);
     if ([command isEqualToString:CommandExpand]) {
-        CGRect screenFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-        _mraidWebView.frame= screenFrame;
-        BOOL usrCustomClose =  [NSNumber numberWithBool:[self boolFromParameters:properties forKey:@"shouldUseCustomClose"]];
-        self.currentState = MRAdViewStateExpanded;
-        NSArray *startingMraidProperties = @[[MRPlacementTypeProperty propertyWithType:self.placementType],
-                                              [MRSupportsProperty defaultProperty],
-                                              [MRStateProperty propertyWithState:self.currentState]
-                                              ];
-        [bridge fireChangeEventsForProperties:startingMraidProperties];
-        [bridge fireCommandCompleted:command];
+        
+        [self expand:bridge command:command properties:properties];
+        
     }else if ([command isEqualToString:CommandSetOrientationProperties])
     {
         

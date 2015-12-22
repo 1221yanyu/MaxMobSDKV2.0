@@ -12,6 +12,14 @@
 
 #define TestHTMLMopubBanner @"readAd"
 #define TestHTMLExpand @"mraid_expand"
+#define TestHTMLTwoPartExpand @"mraid_two_part_expand"
+#define TestHTMLFullpage @"mraid_fullpage"
+#define TestHTMLVideoInterstitial @"mraid_video_interstitial"
+#define TestHTMLResize @"mraid_resize"
+#define TestHTMLResizeError @"mraid_resize_error"
+
+static NSString *const MaxMobSDKViewWillEnterBackground  = @"MaxMobSDKViewWillEnterBackground";
+static NSString *const MaxMobSDKViewWillEnterForeground  = @"MaxMobSDKViewWillEnterForeground";
 
 
 #define CommandExpand @"expand"
