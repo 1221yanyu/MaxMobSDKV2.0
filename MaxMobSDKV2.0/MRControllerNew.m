@@ -126,7 +126,7 @@
     NSBundle *parentBundle = [NSBundle mainBundle];
     NSString *mraidBundlePath = [parentBundle pathForResource:@"MRAID" ofType:@"bundle"];
     NSBundle *mraidBundle = [NSBundle bundleWithPath:mraidBundlePath];
-    NSString *htmlPath = [mraidBundle pathForResource:TestHTMLVideoInterstitial ofType:@"html"];
+    NSString *htmlPath = [mraidBundle pathForResource:TestHTMLExpand ofType:@"html"];
     NSString *HTML = [[NSString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
     [self.mraidBridge loadHTMLString:HTML baseURL:nil];
     
@@ -160,6 +160,11 @@
     NSString *imageURL = [bundle pathForResource:@"CloseBtn" ofType:@"png"];
     [closeButton setBackgroundImage:[UIImage imageWithContentsOfFile:imageURL] forState:UIControlStateNormal];
     closeButton.backgroundColor = [UIColor clearColor];
+}
+
+-(void)executeWithBridge:(MRBridge *)bridge command:(NSString *)command properties:(NSDictionary *)properties
+{
+    
 }
 
 -(void)expand:(MRBridge *)bridge command:(NSString *)command properties:(NSDictionary *)properties
@@ -427,6 +432,9 @@
         [self expand:bridge command:command properties:properties];
         
     }else if ([command isEqualToString:CommandSetOrientationProperties])
+    {
+        
+    }else if ([command isEqualToString:CommandClose])
     {
         
     }
