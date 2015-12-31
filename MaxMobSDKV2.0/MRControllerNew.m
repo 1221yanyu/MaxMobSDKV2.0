@@ -29,6 +29,8 @@
 @property (nonatomic, assign) BOOL isAnimatingAdSize;
 @property (nonatomic, assign) BOOL isViewable;
 
+@property (nonatomic, assign) UIInterfaceOrientationMask forceOrientationMask;
+@property (nonatomic, copy) void (^forceOrientationAfterAnimationBlock)();
 
 
 @end
@@ -162,9 +164,51 @@
     closeButton.backgroundColor = [UIColor clearColor];
 }
 
--(void)executeWithBridge:(MRBridge *)bridge command:(NSString *)command properties:(NSDictionary *)properties
+-(void)orientation:(MRBridge *)bridge command:(NSString *)command properties:(NSDictionary *)properties
 {
+    UIInterfaceOrientationMask forceOrientationMaskValue;
+    NSString *forceOrientationString = properties[@"forceOrientation"];
     
+    // Give a default value of "none" for forceOrientationString if it didn't come in through the params.
+    if (!forceOrientationString) {
+        forceOrientationString = kOrientationPropertyForceOrientationNoneKey;
+    }
+    
+    // Do not allow orientation changing if we're given a force orientation other than none. Based on the spec,
+    // we believe that forceOrientation takes precedence over allowOrientationChange and should not allow
+    // orientation changes when a forceOrientation other than 'none' is given.
+    if ([forceOrientationString isEqualToString:kOrientationPropertyForceOrientationPortraitKey]) {
+        forceOrientationMaskValue = UIInterfaceOrientationMaskPortrait;
+    } else if ([forceOrientationString isEqualToString:kOrientationPropertyForceOrientationLandscapeKey]) {
+        forceOrientationMaskValue = UIInterfaceOrientationMaskLandscape;
+    } else {
+        // Default allowing orientation change to YES. We will change this only if we received a value for this in our params.
+        BOOL allowOrientationChangeValue = YES;
+        
+        // If we end up allowing orientation change, then we're going to allow any orientation.
+        forceOrientationMaskValue = UIInterfaceOrientationMaskAll;
+        
+        NSObject *allowOrientationChangeObj = properties[@"allowOrientationChange"];
+        
+        if (allowOrientationChangeObj) {
+            allowOrientationChangeValue = [self boolFromParameters:properties forKey:@"allowOrientationChange"];
+        }
+        
+        // If we don't allow orientation change, we're locking the user into the current orientation.
+        if (!allowOrientationChangeValue) {
+            UIInterfaceOrientation currentOrientation = MPInterfaceOrientation();
+            
+            if (UIInterfaceOrientationIsLandscape(currentOrientation)) {
+                forceOrientationMaskValue = UIInterfaceOrientationMaskLandscape;
+            } else if (currentOrientation == UIInterfaceOrientationPortrait) {
+                forceOrientationMaskValue = UIInterfaceOrientationMaskPortrait;
+            } else if (currentOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+                forceOrientationMaskValue = UIInterfaceOrientationMaskPortraitUpsideDown;
+            }
+        }
+    }
+    [self bridge:bridge handleNativeCommandSetOrientationPropertiesWithForceOrientationMask:forceOrientationMaskValue];
+    [bridge fireCommandCompleted:command];
 }
 
 -(void)expand:(MRBridge *)bridge command:(NSString *)command properties:(NSDictionary *)properties
@@ -433,7 +477,7 @@
         
     }else if ([command isEqualToString:CommandSetOrientationProperties])
     {
-        
+        [self orientation:bridge command:command properties:properties];
     }else if ([command isEqualToString:CommandClose])
     {
         
@@ -454,6 +498,73 @@
 }
 -(void)bridge:(MRBridge *)bridge handleNativeCommandSetOrientationPropertiesWithForceOrientationMask:(UIInterfaceOrientationMask)forceOrientationMask{
     
+    // If the ad is trying to force an orientation that the app doesn't support, we shouldn't try to force the orientation.
+    if (![[UIApplication sharedApplication] mp_supportsOrientationMask:forceOrientationMask]) {
+        return;
+    }
+    
+    BOOL inExpandedState = self.currentState == MRAdViewStateExpanded;
+    
+    // If we aren't expanded or showing an interstitial ad, we don't have to force orientation on our ad.
+    if (!inExpandedState && self.placementType != MRAdViewPlacementTypeInterstitial) {
+        return;
+    }
+    
+    // If request handling is paused, we want to queue up this method to be called again when they are re-enabled.
+    if (!bridge.shouldHandleRequests) {
+        __weak __typeof__(self) weakSelf = self;
+        self.forceOrientationAfterAnimationBlock = ^void() {
+            __typeof__(self) strongSelf = weakSelf;
+            [strongSelf bridge:bridge handleNativeCommandSetOrientationPropertiesWithForceOrientationMask:forceOrientationMask];
+        };
+        return;
+    }
+    
+    // By this point, we've committed to forcing the orientation so we don't need a forceOrientationAfterAnimationBlock.
+    self.forceOrientationAfterAnimationBlock = nil;
+    self.forceOrientationMask = forceOrientationMask;
+    
+    BOOL inSameOrientation = [[UIApplication sharedApplication] mp_doesOrientation:MPInterfaceOrientation() matchOrientationMask:forceOrientationMask];
+//    UIViewController <MPForceableOrientationProtocol> *fullScreenAdViewController = inExpandedState ? self.expandModalViewController : self.interstitialViewController;
+//    
+//    // If we're currently in the force orientation, we don't need to do any rotation.  However, we still need to make sure
+//    // that the view controller knows to use the forced orientation when the user rotates the device.
+//    if (inSameOrientation) {
+//        _mraidWebView.su
+//        fullScreenAdViewController.supportedOrientationMask = forceOrientationMask;
+//    } else {
+//        // It doesn't seem possible to force orientation in iOS 7+. So we dismiss the current view controller and re-present it with the forced orientation.
+//        // If it's an expanded ad, we need to restore the status bar visibility before we dismiss the current VC since we don't show the status bar in expanded state.
+//        if (inExpandedState) {
+//            [self.expandModalViewController restoreStatusBarVisibility];
+//        }
+//        
+//        // Block our timer from updating properties while we force orientation on the view controller.
+//        [self willBeginAnimatingAdSize];
+//        
+//        UIViewController *presentingViewController = fullScreenAdViewController.presentingViewController;
+//        __weak __typeof__(self) weakSelf = self;
+//        [fullScreenAdViewController dismissViewControllerAnimated:NO completion:^{
+//            __typeof__(self) strongSelf = weakSelf;
+//            
+//            if (inExpandedState) {
+//                [strongSelf didEndAnimatingAdSize];
+//                
+//                // If expanded, we don't need to change the state of the ad once the modal is present here as the ad is technically
+//                // always in the expanded state throughout the process of dismissing and presenting.
+//                [strongSelf presentExpandModalViewControllerWithView:strongSelf.expansionContentView animated:NO completion:^{
+//                    [strongSelf updateMRAIDProperties];
+//                }];
+//            } else {
+//                fullScreenAdViewController.supportedOrientationMask = forceOrientationMask;
+//                [presentingViewController presentViewController:fullScreenAdViewController animated:NO completion:^{
+//                    [strongSelf didEndAnimatingAdSize];
+//                    strongSelf.currentInterfaceOrientation = MPInterfaceOrientation();
+//                    [strongSelf updateMRAIDProperties];
+//                }];
+//            }
+//        }];
+//    }
 }
 -(void)bridge:(MRBridge *)bridge handleNativeCommandExpandWithURL:(NSURL *)url useCustomClose:(BOOL)useCustomClose{
     

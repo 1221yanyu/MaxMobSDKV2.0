@@ -126,7 +126,7 @@
 		16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAdConfiguration.m; sourceTree = "<group>"; };
 		16C6DEE71C16D88400BA5507 /* MMAdServerCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdServerCommunicator.h; sourceTree = "<group>"; };
 		16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAdServerCommunicator.m; sourceTree = "<group>"; };
-		F4EBE3D21C19BB740004D12E /* testAd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testAd.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4EBE3D21C19BB740004D12E /* testAd1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testAd1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4EBE3D51C19BB750004D12E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F4EBE3D71C19BB750004D12E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F4EBE3D81C19BB750004D12E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				161B9D971C0ECF8E005FB59B /* libMaxMobSDKV2.0.a */,
-				F4EBE3D21C19BB740004D12E /* testAd.app */,
+				F4EBE3D21C19BB740004D12E /* testAd1.app */,
 				F4EBE3EA1C19BB750004D12E /* testAdTests.xctest */,
 				F4EBE3F51C19BB750004D12E /* testAdUITests.xctest */,
 			);
@@ -367,9 +367,9 @@
 			productReference = 161B9D971C0ECF8E005FB59B /* libMaxMobSDKV2.0.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		F4EBE3D11C19BB740004D12E /* testAd */ = {
+		F4EBE3D11C19BB740004D12E /* testAd1 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F4EBE3FC1C19BB750004D12E /* Build configuration list for PBXNativeTarget "testAd" */;
+			buildConfigurationList = F4EBE3FC1C19BB750004D12E /* Build configuration list for PBXNativeTarget "testAd1" */;
 			buildPhases = (
 				F4EBE3CE1C19BB740004D12E /* Sources */,
 				F4EBE3CF1C19BB740004D12E /* Frameworks */,
@@ -379,9 +379,9 @@
 			);
 			dependencies = (
 			);
-			name = testAd;
+			name = testAd1;
 			productName = testAd;
-			productReference = F4EBE3D21C19BB740004D12E /* testAd.app */;
+			productReference = F4EBE3D21C19BB740004D12E /* testAd1.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F4EBE3E91C19BB750004D12E /* testAdTests */ = {
@@ -459,7 +459,7 @@
 			projectRoot = "";
 			targets = (
 				161B9D961C0ECF8E005FB59B /* MaxMobSDKV2.0 */,
-				F4EBE3D11C19BB740004D12E /* testAd */,
+				F4EBE3D11C19BB740004D12E /* testAd1 */,
 				F4EBE3E91C19BB750004D12E /* testAdTests */,
 				F4EBE3F41C19BB750004D12E /* testAdUITests */,
 			);
@@ -556,12 +556,12 @@
 /* Begin PBXTargetDependency section */
 		F4EBE3EC1C19BB750004D12E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F4EBE3D11C19BB740004D12E /* testAd */;
+			target = F4EBE3D11C19BB740004D12E /* testAd1 */;
 			targetProxy = F4EBE3EB1C19BB750004D12E /* PBXContainerItemProxy */;
 		};
 		F4EBE3F71C19BB750004D12E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F4EBE3D11C19BB740004D12E /* testAd */;
+			target = F4EBE3D11C19BB740004D12E /* testAd1 */;
 			targetProxy = F4EBE3F61C19BB750004D12E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -787,7 +787,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F4EBE3FC1C19BB750004D12E /* Build configuration list for PBXNativeTarget "testAd" */ = {
+		F4EBE3FC1C19BB750004D12E /* Build configuration list for PBXNativeTarget "testAd1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F4EBE3FD1C19BB750004D12E /* Debug */,
