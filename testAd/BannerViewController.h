@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MRControllerNew.h"
+#import "MaxMobAdSDKView.h"
 
 
-@interface ViewController : UIViewController < MRControllerNewDelegate>
+@interface BannerViewController : UIViewController < MaxMobAdSDKViewDelegate>
 {
-    MRControllerNew *mrController;
+    MaxMobAdSDKView *maxmobAdView;
 }
 
 @end

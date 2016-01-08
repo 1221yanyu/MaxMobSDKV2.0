@@ -18,8 +18,8 @@
 #define TestHTMLResize @"mraid_resize"
 #define TestHTMLResizeError @"mraid_resize_error"
 
-static NSString *const MaxMobSDKViewWillEnterBackground  = @"MaxMobSDKViewWillEnterBackground";
-static NSString *const MaxMobSDKViewWillEnterForeground  = @"MaxMobSDKViewWillEnterForeground";
+//static NSString *const MaxMobSDKViewWillEnterBackground  = @"MaxMobSDKViewWillEnterBackground";
+//static NSString *const MaxMobSDKViewWillEnterForeground  = @"MaxMobSDKViewWillEnterForeground";
 
 
 #define CommandExpand @"expand"
@@ -33,10 +33,12 @@ static NSString *const MaxMobSDKViewWillEnterForeground  = @"MaxMobSDKViewWillEn
 @interface MRControllerNew : NSObject
 
 @property (nonatomic, assign) id<MRControllerNewDelegate> delegate;
+@property (nonatomic, assign) BOOL prepareAd;
 
 -(instancetype)initWithAdViewFrame:(CGRect)adViewFrame adPlacementType:(MRAdViewPlacementType)placementType;
 
 -(void)loadAdWithConfiguration:(MMAdConfiguration *)configuration;
+-(void)loadAdWithHTML:(NSString *)html;
 //-(void)handleMRAIDInterstitialDidPresentWithViewController:()
 -(void)enableRequestHandling;
 -(void)disableRequestHanding;

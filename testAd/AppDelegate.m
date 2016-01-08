@@ -17,8 +17,28 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self.window makeKeyAndVisible];
+//    [NSThread sleepForTimeInterval:2.0];
+    NSString *defaultImgName = @"Default";
+    UIColor* bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:defaultImgName]];
+    NSString *PublishID = @"M3xudWxsfDB8MA==";
+    NSString *PlacementID = @"MTB8M3wyNXwz";
+        maxmobSplashAdView = [[MaxMobSplashAdView alloc] initSplashAd:PublishID placement:PlacementID orientation:Orientation_Portrait window:self.window background:bgColor delegate:self];
+    [maxmobSplashAdView startSpalsh];
     return YES;
 }
+- (void)didAdReceived:(id)view withStatus:(NSString*)resultStatus{//when finished requesting a ad, then callback this method, return status.
+    NSLog(@"result status is: %@", resultStatus);
+}
+
+- (void)onClicked:(id)view toWhere:(NSString *)toWhere{//when user clicked the view, then callback this method, 'toWhere' means the
+    NSLog(@"toWhere is: %@", toWhere);
+}
+
+- (void)willDismissScreen:(id)view{//when user clicked the done button from webview, then callback this method.
+    NSLog(@"Come back to ad view.");
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

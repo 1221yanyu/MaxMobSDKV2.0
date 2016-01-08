@@ -40,6 +40,7 @@
 -(instancetype)initWithAdViewFrame:(CGRect)adViewFrame adPlacementType:(MRAdViewPlacementType)placementType
 {
     if (self = [super init]) {
+        _prepareAd = NO;
         _placementType = placementType;
         _currentState = MRAdViewStateDefault;
         
@@ -133,7 +134,10 @@
     [self.mraidBridge loadHTMLString:HTML baseURL:nil];
     
 }
-
+-(void)loadAdWithHTML:(NSString *)html
+{
+    [self.mraidBridge loadHTMLString:html baseURL:nil];
+}
 
 -(void)clickCloseBtn
 {
@@ -576,6 +580,7 @@
 
 - (void)adDidLoad
 {
+    _prepareAd = YES;
     [self.delegate adDidLoad:self.mraidWebView];
 }
 

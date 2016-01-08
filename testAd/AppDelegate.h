@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MaxMobSplashAdView.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,MaxMobSplashAdControllerDelegate>
+{
+    MaxMobSplashAdView *maxmobSplashAdView;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

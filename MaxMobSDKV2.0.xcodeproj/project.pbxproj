@@ -30,13 +30,55 @@
 		166765E81C1147D2002549EB /* MRBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765E71C1147D2002549EB /* MRBridge.m */; };
 		166765EE1C114825002549EB /* MRCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765ED1C114825002549EB /* MRCommand.m */; };
 		166765F11C114893002549EB /* MRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 166765F01C114893002549EB /* MRConstants.m */; };
+		1694E34F1C3A48FF00356DB5 /* MaxMobAdSDKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E34B1C3A48FF00356DB5 /* MaxMobAdSDKView.m */; };
+		1694E3501C3A48FF00356DB5 /* MaxMobInterstitialAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E34C1C3A48FF00356DB5 /* MaxMobInterstitialAdView.m */; };
+		1694E3511C3A48FF00356DB5 /* MaxMobSplashAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E34D1C3A48FF00356DB5 /* MaxMobSplashAdView.m */; };
+		1694E3521C3A48FF00356DB5 /* MaxMobRTSplashAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E34E1C3A48FF00356DB5 /* MaxMobRTSplashAdView.m */; };
+		1694E3551C3A490900356DB5 /* MaxMobAdViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3541C3A490900356DB5 /* MaxMobAdViewManager.m */; };
+		1694E3681C3A4B2400356DB5 /* Advertisement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3581C3A4B2400356DB5 /* Advertisement.m */; };
+		1694E3691C3A4B2400356DB5 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E35A1C3A4B2400356DB5 /* LocalCache.m */; };
+		1694E36A1C3A4B2400356DB5 /* AdAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E35C1C3A4B2400356DB5 /* AdAction.m */; };
+		1694E36B1C3A4B2400356DB5 /* Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E35E1C3A4B2400356DB5 /* Transition.m */; };
+		1694E36C1C3A4B2400356DB5 /* AdType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3601C3A4B2400356DB5 /* AdType.m */; };
+		1694E36D1C3A4B2400356DB5 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3621C3A4B2400356DB5 /* UserInfo.m */; };
+		1694E36E1C3A4B2400356DB5 /* CCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3641C3A4B2400356DB5 /* CCLocationManager.m */; };
+		1694E36F1C3A4B2400356DB5 /* LocalCacheForAdJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3671C3A4B2400356DB5 /* LocalCacheForAdJson.m */; };
+		1694E3781C3A6E6E00356DB5 /* MaxMobJsonDicAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3731C3A6E6E00356DB5 /* MaxMobJsonDicAnalysis.m */; };
+		1694E3791C3A6E6E00356DB5 /* MaxMobBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3751C3A6E6E00356DB5 /* MaxMobBase64.m */; };
+		1694E37A1C3A6E6E00356DB5 /* MaxMobReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3771C3A6E6E00356DB5 /* MaxMobReachability.m */; };
+		1694E3821C3B6F9900356DB5 /* BannerAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E37D1C3B6F9800356DB5 /* BannerAdView.m */; };
+		1694E3831C3B6F9900356DB5 /* InterstitialAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E37F1C3B6F9800356DB5 /* InterstitialAdView.m */; };
+		1694E3841C3B6F9900356DB5 /* SplashAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3811C3B6F9900356DB5 /* SplashAdView.m */; };
+		1694E38C1C3B6FC200356DB5 /* TOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3871C3B6FC200356DB5 /* TOWebViewController.m */; };
+		1694E38D1C3B6FC200356DB5 /* TOActivitySafari.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3891C3B6FC200356DB5 /* TOActivitySafari.m */; };
+		1694E38E1C3B6FC200356DB5 /* UIImage+TOWebViewControllerIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E38B1C3B6FC200356DB5 /* UIImage+TOWebViewControllerIcons.m */; };
+		1694E3921C3B70F300356DB5 /* MaxMobNativeAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3911C3B70F300356DB5 /* MaxMobNativeAd.m */; };
+		1694E3A11C3BA18D00356DB5 /* MaxMob_NSObject_SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3951C3BA18D00356DB5 /* MaxMob_NSObject_SBJSON.m */; };
+		1694E3A21C3BA18D00356DB5 /* MaxMob_NSString_SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3971C3BA18D00356DB5 /* MaxMob_NSString_SBJSON.m */; };
+		1694E3A31C3BA18D00356DB5 /* MaxMobSBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E39A1C3BA18D00356DB5 /* MaxMobSBJSON.m */; };
+		1694E3A41C3BA18D00356DB5 /* MaxMobSBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E39C1C3BA18D00356DB5 /* MaxMobSBJsonBase.m */; };
+		1694E3A51C3BA18D00356DB5 /* MaxMobSBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E39E1C3BA18D00356DB5 /* MaxMobSBJsonParser.m */; };
+		1694E3A61C3BA18D00356DB5 /* MaxMobSBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694E3A01C3BA18D00356DB5 /* MaxMobSBJsonWriter.m */; };
+		1694E3A81C3BA2E700356DB5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1694E3A71C3BA2E700356DB5 /* CoreGraphics.framework */; };
+		1694E3AA1C3BA2ED00356DB5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1694E3A91C3BA2ED00356DB5 /* CoreLocation.framework */; };
+		1694E3AC1C3BA2FA00356DB5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1694E3AB1C3BA2FA00356DB5 /* SystemConfiguration.framework */; };
+		1694E3AE1C3BA30100356DB5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1694E3AD1C3BA30100356DB5 /* CoreTelephony.framework */; };
+		1694E3B01C3BA30A00356DB5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1694E3AF1C3BA30A00356DB5 /* QuartzCore.framework */; };
+		1694E3B21C3BA31000356DB5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1694E3B11C3BA31000356DB5 /* UIKit.framework */; };
+		1694E3B41C3BA31900356DB5 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1694E3B31C3BA31900356DB5 /* AdSupport.framework */; };
+		1694E3B61C3BA32000356DB5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1694E3B51C3BA32000356DB5 /* MessageUI.framework */; };
+		1694E3B81C3BA32A00356DB5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1694E3B71C3BA32A00356DB5 /* CoreMedia.framework */; };
+		1694E3B91C3BA4C400356DB5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1694E3701C3A4B7200356DB5 /* Foundation.framework */; };
+		16B6A5DF1C3D2FCE0098FDAC /* MaxMobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 16B6A5DE1C3D2FCE0098FDAC /* MaxMobAdSDKBundle.bundle */; };
+		16B6A5E21C3E4A4A0098FDAC /* RichMediaBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B6A5E11C3E4A4A0098FDAC /* RichMediaBannerViewController.m */; };
+		16B6A5E51C3E4DCC0098FDAC /* InterstitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B6A5E41C3E4DCC0098FDAC /* InterstitialViewController.m */; };
 		16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE11C156E9E00BA5507 /* MRProperty.m */; };
 		16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE51C159B5D00BA5507 /* MMAdConfiguration.m */; };
 		16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C6DEE81C16D88400BA5507 /* MMAdServerCommunicator.m */; };
 		16CCBCD01C1EDF0C00A95A6F /* MRAID.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 161B9DA61C0EDD36005FB59B /* MRAID.bundle */; };
 		F4EBE3D61C19BB750004D12E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EBE3D51C19BB750004D12E /* main.m */; };
 		F4EBE3D91C19BB750004D12E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EBE3D81C19BB750004D12E /* AppDelegate.m */; };
-		F4EBE3DC1C19BB750004D12E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EBE3DB1C19BB750004D12E /* ViewController.m */; };
+		F4EBE3DC1C19BB750004D12E /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EBE3DB1C19BB750004D12E /* BannerViewController.m */; };
 		F4EBE3DF1C19BB750004D12E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4EBE3DD1C19BB750004D12E /* Main.storyboard */; };
 		F4EBE3E11C19BB750004D12E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4EBE3E01C19BB750004D12E /* Assets.xcassets */; };
 		F4EBE3E41C19BB750004D12E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4EBE3E21C19BB750004D12E /* LaunchScreen.storyboard */; };
@@ -120,6 +162,82 @@
 		166765ED1C114825002549EB /* MRCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCommand.m; sourceTree = "<group>"; };
 		166765EF1C114893002549EB /* MRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRConstants.h; sourceTree = "<group>"; };
 		166765F01C114893002549EB /* MRConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRConstants.m; sourceTree = "<group>"; };
+		1694E3451C3A48A600356DB5 /* MaxMobAdSDKView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxMobAdSDKView.h; sourceTree = "<group>"; };
+		1694E3471C3A48BE00356DB5 /* MaxMobInterstitialAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxMobInterstitialAdView.h; sourceTree = "<group>"; };
+		1694E3481C3A48BE00356DB5 /* MaxMobSplashAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxMobSplashAdView.h; sourceTree = "<group>"; };
+		1694E3491C3A48BE00356DB5 /* MaxMobRTSplashAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxMobRTSplashAdView.h; sourceTree = "<group>"; };
+		1694E34B1C3A48FF00356DB5 /* MaxMobAdSDKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobAdSDKView.m; sourceTree = "<group>"; };
+		1694E34C1C3A48FF00356DB5 /* MaxMobInterstitialAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobInterstitialAdView.m; sourceTree = "<group>"; };
+		1694E34D1C3A48FF00356DB5 /* MaxMobSplashAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobSplashAdView.m; sourceTree = "<group>"; };
+		1694E34E1C3A48FF00356DB5 /* MaxMobRTSplashAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobRTSplashAdView.m; sourceTree = "<group>"; };
+		1694E3531C3A490900356DB5 /* MaxMobAdViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMobAdViewManager.h; sourceTree = "<group>"; };
+		1694E3541C3A490900356DB5 /* MaxMobAdViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobAdViewManager.m; sourceTree = "<group>"; };
+		1694E3571C3A4B2400356DB5 /* Advertisement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Advertisement.h; sourceTree = "<group>"; };
+		1694E3581C3A4B2400356DB5 /* Advertisement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Advertisement.m; sourceTree = "<group>"; };
+		1694E3591C3A4B2400356DB5 /* LocalCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCache.h; sourceTree = "<group>"; };
+		1694E35A1C3A4B2400356DB5 /* LocalCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCache.m; sourceTree = "<group>"; };
+		1694E35B1C3A4B2400356DB5 /* AdAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdAction.h; sourceTree = "<group>"; };
+		1694E35C1C3A4B2400356DB5 /* AdAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdAction.m; sourceTree = "<group>"; };
+		1694E35D1C3A4B2400356DB5 /* Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transition.h; sourceTree = "<group>"; };
+		1694E35E1C3A4B2400356DB5 /* Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transition.m; sourceTree = "<group>"; };
+		1694E35F1C3A4B2400356DB5 /* AdType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdType.h; sourceTree = "<group>"; };
+		1694E3601C3A4B2400356DB5 /* AdType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdType.m; sourceTree = "<group>"; };
+		1694E3611C3A4B2400356DB5 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		1694E3621C3A4B2400356DB5 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		1694E3631C3A4B2400356DB5 /* CCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLocationManager.h; sourceTree = "<group>"; };
+		1694E3641C3A4B2400356DB5 /* CCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLocationManager.m; sourceTree = "<group>"; };
+		1694E3651C3A4B2400356DB5 /* ErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
+		1694E3661C3A4B2400356DB5 /* LocalCacheForAdJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCacheForAdJson.h; sourceTree = "<group>"; };
+		1694E3671C3A4B2400356DB5 /* LocalCacheForAdJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCacheForAdJson.m; sourceTree = "<group>"; };
+		1694E3701C3A4B7200356DB5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1694E3721C3A6E6E00356DB5 /* MaxMobJsonDicAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMobJsonDicAnalysis.h; sourceTree = "<group>"; };
+		1694E3731C3A6E6E00356DB5 /* MaxMobJsonDicAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobJsonDicAnalysis.m; sourceTree = "<group>"; };
+		1694E3741C3A6E6E00356DB5 /* MaxMobBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMobBase64.h; sourceTree = "<group>"; };
+		1694E3751C3A6E6E00356DB5 /* MaxMobBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobBase64.m; sourceTree = "<group>"; };
+		1694E3761C3A6E6E00356DB5 /* MaxMobReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMobReachability.h; sourceTree = "<group>"; };
+		1694E3771C3A6E6E00356DB5 /* MaxMobReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobReachability.m; sourceTree = "<group>"; };
+		1694E37C1C3B6F9800356DB5 /* BannerAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerAdView.h; sourceTree = "<group>"; };
+		1694E37D1C3B6F9800356DB5 /* BannerAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerAdView.m; sourceTree = "<group>"; };
+		1694E37E1C3B6F9800356DB5 /* InterstitialAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialAdView.h; sourceTree = "<group>"; };
+		1694E37F1C3B6F9800356DB5 /* InterstitialAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialAdView.m; sourceTree = "<group>"; };
+		1694E3801C3B6F9900356DB5 /* SplashAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashAdView.h; sourceTree = "<group>"; };
+		1694E3811C3B6F9900356DB5 /* SplashAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashAdView.m; sourceTree = "<group>"; };
+		1694E3861C3B6FC200356DB5 /* TOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOWebViewController.h; sourceTree = "<group>"; };
+		1694E3871C3B6FC200356DB5 /* TOWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOWebViewController.m; sourceTree = "<group>"; };
+		1694E3881C3B6FC200356DB5 /* TOActivitySafari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOActivitySafari.h; sourceTree = "<group>"; };
+		1694E3891C3B6FC200356DB5 /* TOActivitySafari.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOActivitySafari.m; sourceTree = "<group>"; };
+		1694E38A1C3B6FC200356DB5 /* UIImage+TOWebViewControllerIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TOWebViewControllerIcons.h"; sourceTree = "<group>"; };
+		1694E38B1C3B6FC200356DB5 /* UIImage+TOWebViewControllerIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TOWebViewControllerIcons.m"; sourceTree = "<group>"; };
+		1694E38F1C3B6FC600356DB5 /* ToWebViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToWebViewDelegate.h; sourceTree = "<group>"; };
+		1694E3901C3B70EC00356DB5 /* MaxMobNativeAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxMobNativeAd.h; sourceTree = "<group>"; };
+		1694E3911C3B70F300356DB5 /* MaxMobNativeAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobNativeAd.m; sourceTree = "<group>"; };
+		1694E3941C3BA18D00356DB5 /* MaxMob_NSObject_SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMob_NSObject_SBJSON.h; sourceTree = "<group>"; };
+		1694E3951C3BA18D00356DB5 /* MaxMob_NSObject_SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMob_NSObject_SBJSON.m; sourceTree = "<group>"; };
+		1694E3961C3BA18D00356DB5 /* MaxMob_NSString_SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMob_NSString_SBJSON.h; sourceTree = "<group>"; };
+		1694E3971C3BA18D00356DB5 /* MaxMob_NSString_SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMob_NSString_SBJSON.m; sourceTree = "<group>"; };
+		1694E3981C3BA18D00356DB5 /* MaxMobJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMobJSON.h; sourceTree = "<group>"; };
+		1694E3991C3BA18D00356DB5 /* MaxMobSBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMobSBJSON.h; sourceTree = "<group>"; };
+		1694E39A1C3BA18D00356DB5 /* MaxMobSBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobSBJSON.m; sourceTree = "<group>"; };
+		1694E39B1C3BA18D00356DB5 /* MaxMobSBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMobSBJsonBase.h; sourceTree = "<group>"; };
+		1694E39C1C3BA18D00356DB5 /* MaxMobSBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobSBJsonBase.m; sourceTree = "<group>"; };
+		1694E39D1C3BA18D00356DB5 /* MaxMobSBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMobSBJsonParser.h; sourceTree = "<group>"; };
+		1694E39E1C3BA18D00356DB5 /* MaxMobSBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobSBJsonParser.m; sourceTree = "<group>"; };
+		1694E39F1C3BA18D00356DB5 /* MaxMobSBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaxMobSBJsonWriter.h; sourceTree = "<group>"; };
+		1694E3A01C3BA18D00356DB5 /* MaxMobSBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaxMobSBJsonWriter.m; sourceTree = "<group>"; };
+		1694E3A71C3BA2E700356DB5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1694E3A91C3BA2ED00356DB5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1694E3AB1C3BA2FA00356DB5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1694E3AD1C3BA30100356DB5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		1694E3AF1C3BA30A00356DB5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1694E3B11C3BA31000356DB5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1694E3B31C3BA31900356DB5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		1694E3B51C3BA32000356DB5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		1694E3B71C3BA32A00356DB5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		16B6A5DE1C3D2FCE0098FDAC /* MaxMobAdSDKBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MaxMobAdSDKBundle.bundle; sourceTree = "<group>"; };
+		16B6A5E01C3E4A4A0098FDAC /* RichMediaBannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichMediaBannerViewController.h; sourceTree = "<group>"; };
+		16B6A5E11C3E4A4A0098FDAC /* RichMediaBannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RichMediaBannerViewController.m; sourceTree = "<group>"; };
+		16B6A5E31C3E4DCC0098FDAC /* InterstitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialViewController.h; sourceTree = "<group>"; };
+		16B6A5E41C3E4DCC0098FDAC /* InterstitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialViewController.m; sourceTree = "<group>"; };
 		16C6DEE01C156E9E00BA5507 /* MRProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProperty.h; sourceTree = "<group>"; };
 		16C6DEE11C156E9E00BA5507 /* MRProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRProperty.m; sourceTree = "<group>"; };
 		16C6DEE41C159B5D00BA5507 /* MMAdConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAdConfiguration.h; sourceTree = "<group>"; };
@@ -130,8 +248,8 @@
 		F4EBE3D51C19BB750004D12E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F4EBE3D71C19BB750004D12E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F4EBE3D81C19BB750004D12E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F4EBE3DA1C19BB750004D12E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F4EBE3DB1C19BB750004D12E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F4EBE3DA1C19BB750004D12E /* BannerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
+		F4EBE3DB1C19BB750004D12E /* BannerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
 		F4EBE3DE1C19BB750004D12E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F4EBE3E01C19BB750004D12E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4EBE3E31C19BB750004D12E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -156,6 +274,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1694E3B91C3BA4C400356DB5 /* Foundation.framework in Frameworks */,
+				1694E3B81C3BA32A00356DB5 /* CoreMedia.framework in Frameworks */,
+				1694E3B61C3BA32000356DB5 /* MessageUI.framework in Frameworks */,
+				1694E3B41C3BA31900356DB5 /* AdSupport.framework in Frameworks */,
+				1694E3B21C3BA31000356DB5 /* UIKit.framework in Frameworks */,
+				1694E3B01C3BA30A00356DB5 /* QuartzCore.framework in Frameworks */,
+				1694E3AE1C3BA30100356DB5 /* CoreTelephony.framework in Frameworks */,
+				1694E3AC1C3BA2FA00356DB5 /* SystemConfiguration.framework in Frameworks */,
+				1694E3AA1C3BA2ED00356DB5 /* CoreLocation.framework in Frameworks */,
+				1694E3A81C3BA2E700356DB5 /* CoreGraphics.framework in Frameworks */,
 				165771881C23E23500E9F7FD /* EventKit.framework in Frameworks */,
 				1653BBA91C22A9A3001271E9 /* libMaxMobSDKV2.0.a in Frameworks */,
 			);
@@ -181,8 +309,19 @@
 		161B9D8E1C0ECF8E005FB59B = {
 			isa = PBXGroup;
 			children = (
+				1694E3B71C3BA32A00356DB5 /* CoreMedia.framework */,
+				1694E3B51C3BA32000356DB5 /* MessageUI.framework */,
+				1694E3B31C3BA31900356DB5 /* AdSupport.framework */,
+				1694E3B11C3BA31000356DB5 /* UIKit.framework */,
+				1694E3AF1C3BA30A00356DB5 /* QuartzCore.framework */,
+				1694E3AD1C3BA30100356DB5 /* CoreTelephony.framework */,
+				1694E3AB1C3BA2FA00356DB5 /* SystemConfiguration.framework */,
+				1694E3A91C3BA2ED00356DB5 /* CoreLocation.framework */,
+				1694E3A71C3BA2E700356DB5 /* CoreGraphics.framework */,
+				1694E3701C3A4B7200356DB5 /* Foundation.framework */,
 				165771871C23E23500E9F7FD /* EventKit.framework */,
 				161B9DA61C0EDD36005FB59B /* MRAID.bundle */,
+				16B6A5DE1C3D2FCE0098FDAC /* MaxMobAdSDKBundle.bundle */,
 				161B9D991C0ECF8E005FB59B /* MaxMobSDKV2.0 */,
 				F4EBE3D31C19BB750004D12E /* testAd */,
 				F4EBE3ED1C19BB750004D12E /* testAdTests */,
@@ -205,6 +344,11 @@
 		161B9D991C0ECF8E005FB59B /* MaxMobSDKV2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				1694E3931C3BA17E00356DB5 /* Json */,
+				1694E3461C3A48AB00356DB5 /* Public */,
+				1694E34A1C3A48D600356DB5 /* Controller */,
+				1694E37B1C3B6F8700356DB5 /* View */,
+				1694E3561C3A4B0B00356DB5 /* Model */,
 				1657718E1C25472700E9F7FD /* Utility */,
 				16430FF31C192FC30067374C /* Banner */,
 				16C6DEEB1C16F24100BA5507 /* Public */,
@@ -245,6 +389,110 @@
 				1657719A1C255AFF00E9F7FD /* UIView+MPAdditions.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		1694E3461C3A48AB00356DB5 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				1694E3451C3A48A600356DB5 /* MaxMobAdSDKView.h */,
+				1694E3471C3A48BE00356DB5 /* MaxMobInterstitialAdView.h */,
+				1694E3481C3A48BE00356DB5 /* MaxMobSplashAdView.h */,
+				1694E3491C3A48BE00356DB5 /* MaxMobRTSplashAdView.h */,
+				1694E3901C3B70EC00356DB5 /* MaxMobNativeAd.h */,
+			);
+			name = Public;
+			sourceTree = "<group>";
+		};
+		1694E34A1C3A48D600356DB5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1694E38F1C3B6FC600356DB5 /* ToWebViewDelegate.h */,
+				1694E3851C3B6FAE00356DB5 /* WebViewController */,
+				1694E3531C3A490900356DB5 /* MaxMobAdViewManager.h */,
+				1694E3541C3A490900356DB5 /* MaxMobAdViewManager.m */,
+				1694E34B1C3A48FF00356DB5 /* MaxMobAdSDKView.m */,
+				1694E34C1C3A48FF00356DB5 /* MaxMobInterstitialAdView.m */,
+				1694E34D1C3A48FF00356DB5 /* MaxMobSplashAdView.m */,
+				1694E34E1C3A48FF00356DB5 /* MaxMobRTSplashAdView.m */,
+				1694E3911C3B70F300356DB5 /* MaxMobNativeAd.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1694E3561C3A4B0B00356DB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1694E3721C3A6E6E00356DB5 /* MaxMobJsonDicAnalysis.h */,
+				1694E3731C3A6E6E00356DB5 /* MaxMobJsonDicAnalysis.m */,
+				1694E3741C3A6E6E00356DB5 /* MaxMobBase64.h */,
+				1694E3751C3A6E6E00356DB5 /* MaxMobBase64.m */,
+				1694E3761C3A6E6E00356DB5 /* MaxMobReachability.h */,
+				1694E3771C3A6E6E00356DB5 /* MaxMobReachability.m */,
+				1694E3571C3A4B2400356DB5 /* Advertisement.h */,
+				1694E3581C3A4B2400356DB5 /* Advertisement.m */,
+				1694E3591C3A4B2400356DB5 /* LocalCache.h */,
+				1694E35A1C3A4B2400356DB5 /* LocalCache.m */,
+				1694E35B1C3A4B2400356DB5 /* AdAction.h */,
+				1694E35C1C3A4B2400356DB5 /* AdAction.m */,
+				1694E35D1C3A4B2400356DB5 /* Transition.h */,
+				1694E35E1C3A4B2400356DB5 /* Transition.m */,
+				1694E35F1C3A4B2400356DB5 /* AdType.h */,
+				1694E3601C3A4B2400356DB5 /* AdType.m */,
+				1694E3611C3A4B2400356DB5 /* UserInfo.h */,
+				1694E3621C3A4B2400356DB5 /* UserInfo.m */,
+				1694E3631C3A4B2400356DB5 /* CCLocationManager.h */,
+				1694E3641C3A4B2400356DB5 /* CCLocationManager.m */,
+				1694E3651C3A4B2400356DB5 /* ErrorCode.h */,
+				1694E3661C3A4B2400356DB5 /* LocalCacheForAdJson.h */,
+				1694E3671C3A4B2400356DB5 /* LocalCacheForAdJson.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1694E37B1C3B6F8700356DB5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1694E37C1C3B6F9800356DB5 /* BannerAdView.h */,
+				1694E37D1C3B6F9800356DB5 /* BannerAdView.m */,
+				1694E37E1C3B6F9800356DB5 /* InterstitialAdView.h */,
+				1694E37F1C3B6F9800356DB5 /* InterstitialAdView.m */,
+				1694E3801C3B6F9900356DB5 /* SplashAdView.h */,
+				1694E3811C3B6F9900356DB5 /* SplashAdView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1694E3851C3B6FAE00356DB5 /* WebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1694E3861C3B6FC200356DB5 /* TOWebViewController.h */,
+				1694E3871C3B6FC200356DB5 /* TOWebViewController.m */,
+				1694E3881C3B6FC200356DB5 /* TOActivitySafari.h */,
+				1694E3891C3B6FC200356DB5 /* TOActivitySafari.m */,
+				1694E38A1C3B6FC200356DB5 /* UIImage+TOWebViewControllerIcons.h */,
+				1694E38B1C3B6FC200356DB5 /* UIImage+TOWebViewControllerIcons.m */,
+			);
+			name = WebViewController;
+			sourceTree = "<group>";
+		};
+		1694E3931C3BA17E00356DB5 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				1694E3941C3BA18D00356DB5 /* MaxMob_NSObject_SBJSON.h */,
+				1694E3951C3BA18D00356DB5 /* MaxMob_NSObject_SBJSON.m */,
+				1694E3961C3BA18D00356DB5 /* MaxMob_NSString_SBJSON.h */,
+				1694E3971C3BA18D00356DB5 /* MaxMob_NSString_SBJSON.m */,
+				1694E3981C3BA18D00356DB5 /* MaxMobJSON.h */,
+				1694E3991C3BA18D00356DB5 /* MaxMobSBJSON.h */,
+				1694E39A1C3BA18D00356DB5 /* MaxMobSBJSON.m */,
+				1694E39B1C3BA18D00356DB5 /* MaxMobSBJsonBase.h */,
+				1694E39C1C3BA18D00356DB5 /* MaxMobSBJsonBase.m */,
+				1694E39D1C3BA18D00356DB5 /* MaxMobSBJsonParser.h */,
+				1694E39E1C3BA18D00356DB5 /* MaxMobSBJsonParser.m */,
+				1694E39F1C3BA18D00356DB5 /* MaxMobSBJsonWriter.h */,
+				1694E3A01C3BA18D00356DB5 /* MaxMobSBJsonWriter.m */,
+			);
+			name = Json;
 			sourceTree = "<group>";
 		};
 		16C6DEE31C157BE200BA5507 /* MRAID */ = {
@@ -310,8 +558,12 @@
 			children = (
 				F4EBE3D71C19BB750004D12E /* AppDelegate.h */,
 				F4EBE3D81C19BB750004D12E /* AppDelegate.m */,
-				F4EBE3DA1C19BB750004D12E /* ViewController.h */,
-				F4EBE3DB1C19BB750004D12E /* ViewController.m */,
+				F4EBE3DA1C19BB750004D12E /* BannerViewController.h */,
+				F4EBE3DB1C19BB750004D12E /* BannerViewController.m */,
+				16B6A5E01C3E4A4A0098FDAC /* RichMediaBannerViewController.h */,
+				16B6A5E11C3E4A4A0098FDAC /* RichMediaBannerViewController.m */,
+				16B6A5E31C3E4DCC0098FDAC /* InterstitialViewController.h */,
+				16B6A5E41C3E4DCC0098FDAC /* InterstitialViewController.m */,
 				F4EBE3DD1C19BB750004D12E /* Main.storyboard */,
 				F4EBE3E01C19BB750004D12E /* Assets.xcassets */,
 				F4EBE3E21C19BB750004D12E /* LaunchScreen.storyboard */,
@@ -475,6 +727,7 @@
 				16CCBCD01C1EDF0C00A95A6F /* MRAID.bundle in Resources */,
 				F4EBE3E11C19BB750004D12E /* Assets.xcassets in Resources */,
 				F4EBE3DF1C19BB750004D12E /* Main.storyboard in Resources */,
+				16B6A5DF1C3D2FCE0098FDAC /* MaxMobAdSDKBundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,26 +753,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				165771921C25476200E9F7FD /* NSHTTPURLResponse+MPAdditions.m in Sources */,
+				1694E36F1C3A4B2400356DB5 /* LocalCacheForAdJson.m in Sources */,
 				1653BBA81C22A57B001271E9 /* MPGlobal.m in Sources */,
+				1694E3781C3A6E6E00356DB5 /* MaxMobJsonDicAnalysis.m in Sources */,
+				1694E3841C3B6F9900356DB5 /* SplashAdView.m in Sources */,
+				1694E34F1C3A48FF00356DB5 /* MaxMobAdSDKView.m in Sources */,
 				166765E81C1147D2002549EB /* MRBridge.m in Sources */,
 				165771A41C25728B00E9F7FD /* MRAdView.m in Sources */,
+				1694E3681C3A4B2400356DB5 /* Advertisement.m in Sources */,
 				16430FF71C1931AF0067374C /* MMBannerAdManager.m in Sources */,
 				161B9D9D1C0ECF8E005FB59B /* MaxMobSDKV2_0.m in Sources */,
+				1694E38E1C3B6FC200356DB5 /* UIImage+TOWebViewControllerIcons.m in Sources */,
+				1694E3A21C3BA18D00356DB5 /* MaxMob_NSString_SBJSON.m in Sources */,
+				1694E3551C3A490900356DB5 /* MaxMobAdViewManager.m in Sources */,
+				1694E3A31C3BA18D00356DB5 /* MaxMobSBJSON.m in Sources */,
 				163FF4C21C180EAF009846F6 /* MMAdView.m in Sources */,
 				163FF4BF1C180DD3009846F6 /* MMBannerAdViewController.m in Sources */,
 				1653BBA51C22A081001271E9 /* MRNativeCommandHandler.m in Sources */,
 				16C6DEE21C156E9E00BA5507 /* MRProperty.m in Sources */,
+				1694E3A41C3BA18D00356DB5 /* MaxMobSBJsonBase.m in Sources */,
+				1694E3501C3A48FF00356DB5 /* MaxMobInterstitialAdView.m in Sources */,
 				1658CFE31C10316C00C4259F /* MRBundleManager.m in Sources */,
+				1694E36A1C3A4B2400356DB5 /* AdAction.m in Sources */,
+				1694E3791C3A6E6E00356DB5 /* MaxMobBase64.m in Sources */,
+				1694E36C1C3A4B2400356DB5 /* AdType.m in Sources */,
 				16C6DEE91C16D88400BA5507 /* MMAdServerCommunicator.m in Sources */,
+				1694E36D1C3A4B2400356DB5 /* UserInfo.m in Sources */,
 				165771A11C256FE500E9F7FD /* MRControllerNew.m in Sources */,
+				1694E36B1C3A4B2400356DB5 /* Transition.m in Sources */,
 				165520931C225E0D00ACE63E /* NSURL+MPAdditions.m in Sources */,
+				1694E3921C3B70F300356DB5 /* MaxMobNativeAd.m in Sources */,
+				1694E3A11C3BA18D00356DB5 /* MaxMob_NSObject_SBJSON.m in Sources */,
 				16C6DEE61C159B5D00BA5507 /* MMAdConfiguration.m in Sources */,
+				1694E3521C3A48FF00356DB5 /* MaxMobRTSplashAdView.m in Sources */,
+				1694E37A1C3A6E6E00356DB5 /* MaxMobReachability.m in Sources */,
+				1694E3A61C3BA18D00356DB5 /* MaxMobSBJsonWriter.m in Sources */,
+				1694E3831C3B6F9900356DB5 /* InterstitialAdView.m in Sources */,
+				1694E3691C3A4B2400356DB5 /* LocalCache.m in Sources */,
+				1694E38C1C3B6FC200356DB5 /* TOWebViewController.m in Sources */,
 				166765F11C114893002549EB /* MRConstants.m in Sources */,
+				1694E3511C3A48FF00356DB5 /* MaxMobSplashAdView.m in Sources */,
+				1694E3821C3B6F9900356DB5 /* BannerAdView.m in Sources */,
 				164310341C1987220067374C /* MMClosableView.m in Sources */,
 				1657719B1C255AFF00E9F7FD /* UIView+MPAdditions.m in Sources */,
 				160893411C22DB6E001DEC22 /* MPTimer.m in Sources */,
+				1694E36E1C3A4B2400356DB5 /* CCLocationManager.m in Sources */,
+				1694E38D1C3B6FC200356DB5 /* TOActivitySafari.m in Sources */,
 				166765EE1C114825002549EB /* MRCommand.m in Sources */,
 				1657718D1C25406E00E9F7FD /* MMInstanceProvider.m in Sources */,
+				1694E3A51C3BA18D00356DB5 /* MaxMobSBJsonParser.m in Sources */,
 				1657719E1C255B8100E9F7FD /* UIWebView+MPAdditions.m in Sources */,
 				165771951C2548F300E9F7FD /* MRExpandModalViewController.m in Sources */,
 			);
@@ -529,7 +811,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4EBE3DC1C19BB750004D12E /* ViewController.m in Sources */,
+				F4EBE3DC1C19BB750004D12E /* BannerViewController.m in Sources */,
+				16B6A5E21C3E4A4A0098FDAC /* RichMediaBannerViewController.m in Sources */,
+				16B6A5E51C3E4DCC0098FDAC /* InterstitialViewController.m in Sources */,
 				F4EBE3D91C19BB750004D12E /* AppDelegate.m in Sources */,
 				F4EBE3D61C19BB750004D12E /* main.m in Sources */,
 			);
@@ -672,11 +956,12 @@
 				ARCHS = (
 					"$(ARCHS_STANDARD)",
 					i386,
+					x86_64,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -686,11 +971,12 @@
 				ARCHS = (
 					"$(ARCHS_STANDARD)",
 					i386,
+					x86_64,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};
@@ -701,7 +987,11 @@
 				INFOPLIST_FILE = testAd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.testAd;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.Jacob.testAd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -713,7 +1003,11 @@
 				INFOPLIST_FILE = testAd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.testAd;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.Jacob.testAd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
